@@ -26,7 +26,6 @@ Page({
               e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
               newData.dreamsList.push(e)
             })
-            console.log(newData.dreamsList.length)
         }
       })
       page++

@@ -1,9 +1,14 @@
 var util = require('../../../../utils/util.js')
+var app = getApp()
 Page({
   data: {
     toastStatus: true,
     toasContent:"默认",
     dreamTime:'',
+    dreamTypeContent:'',
+    dreamLocationContent:'',
+    content:'',
+    type:'PUBLIC',
     imageList:[]
   },
   onLoad: function(options) {
@@ -24,8 +29,28 @@ Page({
   onPullDownRefresh: function() {
     // Do something when pull down
   },
+  setDreamTypeContent:function(e) {
+    this.setData({dreamTypeContent:e.detail.value})
+  },
+  setDreamLocationContent:function(e) {
+    this.setData({dreamLocationContent:e.detail.value})
+  },
+  setContent:function(e) {
+    this.setData({content:e.detail.value})
+  },
   setLoading: function(){
-      this.openToast("发布成功");
+      //this.openToast("发布成功");
+      console.log('this.data.content = ' + this.data.content)
+      app.sendRequest({
+        url:'op/dreamMessage/send',
+        data:'dreamTypeContent=' + this.data.dreamTypeContent + '&dreamTime=' + this.data.dreamTime + '&dreamLocationContent=' + 
+        this.data.dreamLocationContent + '&content=' + this.data.content + '&type=' + this.data.type,
+        succ:function(data) {
+          wx.redirectTo({
+            url: '../html_showdreams/showdreams'
+          })
+        }
+      })
   },
   chooseImage: function () {
     var that = this
@@ -46,16 +71,5 @@ Page({
       current: current,
       urls: this.data.imageList
     })
-  },
-  openToast: function(content){
-      var obj = {};
-      obj["toasContent"] = content;
-      obj["toastStatus"] = false;
-      this.setData(obj);
-  },
-  toastChange: function(){
-      var obj = {};
-      obj["toastStatus"] = true;
-      this.setData(obj);
   }
 })

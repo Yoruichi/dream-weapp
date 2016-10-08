@@ -14,7 +14,7 @@
   position: relative;
 }
 .padding-input {
-  width: 20rpx;
+  display: inline;
 }
 .placeholder{
   color: gainsboro;

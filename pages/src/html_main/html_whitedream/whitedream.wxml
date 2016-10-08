@@ -2,12 +2,12 @@
     <view class="header">
         <view class="padding-view">{{dreamTime}}。</view>
         <view class="padding-view">我在</view>
-        <input class="padding-view padding-input" type="text" placeholder="家里的沙发上" placeholder-class="placeholder" value="{{dreamLocationContent}}"/>
+        <input bindchange="setDreamLocationContent" class="padding-view padding-input" type="text" placeholder="家里的沙发上" placeholder-class="placeholder" value="{{dreamLocationContent}}"/>
         <view class="padding-view" >做了一个很</view>
-        <input class="padding-view padding-input" type="text" placeholder="慵懒" placeholder-class="placeholder" value="{{dreamTypeContent}}"/>
+        <input bindchange="setDreamTypeContent" class="padding-view padding-input" type="text" placeholder="慵懒" placeholder-class="placeholder" value="{{dreamTypeContent}}"/>
         <view class="padding-view">的梦。我梦见</view>
+        <input bindchange="setContent" class="padding-view padding-input" type="text" placeholder="自己化身成了一只猫,你呢?" placeholder-class="placeholder" class="dream_content" value="{{content}}" />
     </view>
-    <input type="text" placeholder="自己化身成了一只猫,你呢?" placeholder-class="placeholder" class="dream_content" value="{{content}}" />
     <view class="images-wrapper">
         <text class="images-text">请选择图片</text>
         <view class="images-list">
