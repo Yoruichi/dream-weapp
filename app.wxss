@@ -1,0 +1,29 @@
+@import "font-awesome.min.wxss";
+/**app.wxss**/
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+}
+.unii-content{
+  padding: 0.5rem;
+}
+.ub-img
+{
+	-webkit-background-size:contain;
+	background-size:contain;
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.ub-fh
+{
+	width:100%;
+}
+.ub-fv
+{
+	height:100%;
+}

@@ -1,0 +1,38 @@
+<view class="unii-content dream_list">
+    <block wx:for="{{dreamsList}}" wx:for-item="dream">
+        <view class="dream_line">
+            <view class="dream_title">
+                <view class="dream_userinfo">
+                    <image class="ub-img user_photo" src="../../imgs/icon64_appwx_logo.png"></image>
+                    <text class="username">
+                    {{dream.dreamMessageView.nickName}}
+                    </text>
+                </view>
+                <view class="user_time">
+                    <image class="ub-img timetime_img" src="../../imgs/green_tri.png"></image>
+                    <text class="time_desc">
+                    {{dream.dreamMessageView.timeshow}}
+                    </text>
+                </view>
+            </view>
+            <view bindtap="showContent"  class="dream_content">
+                {{dream.dreamMessageView.content}}
+            </view>
+            <view wx:if="{{dream.imageList.length > 0}}" class="images-wrapper">
+                <view class="images-list">
+                    <!--<block wx:for="{{dream.imageList}}" wx:for-item="image">-->
+                        <image src="{{dream.dreamMessageView.image_url}}" class="images-image" data-src="{{dream.dreamMessageView.image_url}}" bindtap="previewImage"></image>
+                    <!--</block>-->
+                </view>
+            </view>
+            <view class="dream_act">
+                <image bindtap="do_well" class="ub-img do_act_icon" src="../../imgs/icon64_appwx_logo.png"></image>
+                <image bindtap="do_share" class="ub-img do_act_icon" src="../../imgs/icon64_appwx_logo.png"></image>
+                <image bindtap="do_reply" class="ub-img do_act_icon" src="../../imgs/icon64_appwx_logo.png"></image>
+            </view>
+        </view>
+    </block>
+</view>
+<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
+    {{toasContent}}
+</toast>

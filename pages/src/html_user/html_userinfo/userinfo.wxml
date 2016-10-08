@@ -1,0 +1,26 @@
+<view class="">
+    <view class="">
+        头像
+    </view>
+    <view class="">
+        昵称
+    </view>
+    <view class="">
+        账号
+    </view>
+    <view class="">
+        生日
+    </view>
+    <view class="">
+        性别
+    </view>
+    <view class="">
+        职业
+    </view>
+    <view class="">
+        地区
+    </view>
+    <view class="">
+        个性签名
+    </view>
+</view>
