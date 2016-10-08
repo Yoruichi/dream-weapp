@@ -53,17 +53,17 @@ function timeInterval(t) {
     r = '刚刚'
   } else {
     var interval = now - t
-    if(t < 3600000) {
-      r = t/60000 + '分钟前'
-    }else if(t < 86400000) {
-      r = t/86400000 + '小时前'
-    }else {
+    if(interval <= 3600000) {
+      r = Math.floor(interval/60000) + '分钟前'
+    } else if(interval <= 86400000) {
+      r = Math.floor(interval/86400000) + '小时前'
+    } else {
       var d = new Date()
       d.setTime(t)
       r = dateFormat(d, 'dd/MM')
     }
   }
-  //console.log(t + ' interval ' + r)
+  console.log(t + ' with ' + now + ' interval ' + interval + ' should show ' + r)
   return r
 }
 
