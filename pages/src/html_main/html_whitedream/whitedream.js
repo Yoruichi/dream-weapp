@@ -44,18 +44,28 @@ Page({
     this.setData({content:e.detail.value})
   },
   setLoading: function(){
-      //this.openToast("发布成功");
-      console.log('this.data.content = ' + this.data.content)
-      app.sendRequest({
+    var that = this
+      app.request({
         url:'op/dreamMessage/send',
         data:'dreamTypeContent=' + this.data.dreamTypeContent + '&dreamTime=' + this.data.dreamTime + '&dreamLocationContent=' + 
         this.data.dreamLocationContent + '&content=' + this.data.content + '&type=' + this.data.type,
         succ:function(data) {
-          wx.redirectTo({
-            url: '../html_showdreams/showdreams'
-          })
+          if(data.succ) {
+            that.openToast("发布成功");
+            // wx.redirectTo({
+            //   url: app.getPreview().url
+            // })
+          }else{
+            console.log(data.message)
+          }
         }
       })
+  },
+  openToast: function(content){
+      var obj = {};
+      obj["toasContent"] = content;
+      obj["toastStatus"] = false;
+      this.setData(obj);
   },
   chooseImage: function () {
     var that = this

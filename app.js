@@ -1,6 +1,6 @@
 //app.js
 App({
-  sendRequest:function(o) {
+  request:function(o) {
     var url = this.globalData.globalUrlHeader + o.url
     var data = o.data
     var session = this.globalData.jSessionId
@@ -22,29 +22,22 @@ App({
   },
   onLaunch: function () {
     //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-  },
-  getUserInfo:function(cb){
-    var that = this
-    if(this.globalData.userInfo){
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    }else{
-      //调用登录接口
-      wx.login({
-        success: function () {
-          wx.getUserInfo({
-            success: function (res) {
-              typeof cb == "function" && cb(that.globalData.userInfo)
-            }
-          })
-        }
-      })
+    var sid = wx.getStorageSync('sessionId')
+    if(sid) {
+      this.globalData = {isLogin:true,
+        globalUrlHeader:'http://localhost:8079/',
+        jSessionId:sid,preview:{}}
     }
   },
+  preview:{},
+  getPreview:function() {
+    return this.preview
+  },
+  setPreview:function(p) {
+    this.preview = p
+  },
   globalData:{
-    userInfo:{},
+    isLogin:false,
     globalUrlHeader:'http://localhost:8079/',
     jSessionId:'lalal'
   }

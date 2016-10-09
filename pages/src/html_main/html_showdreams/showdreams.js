@@ -10,22 +10,30 @@ Page({
     dreamsList:new Array()
   },
   onLoad: function(options) {
-    this.init();
-    //console.log('show dreams is onload')
+    app.setPreview({url:'/pages/src/html_main/html_showdreams/showdreams'})
+      if(app.globalData.isLogin) {
+        this.init()
+      } else {
+        wx.navigateTo({url:'../../../index/index'})
+      }
   },
   init: function(){
       //TOOD 请求梦的数据，0页清空，添加，其他追加内容
       var newData = this.data
       var page = newData.nowpage
       page = page == undefined ? 0 : page
-      app.sendRequest({
+      app.request({
         url:'op/messageView/check',
         data:'limit='+newData.limit+'&index='+newData.nowpage * newData.limit,
         succ:function(data){
+          if(data.succ){
             data.obj.forEach(function(e){
               e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
               newData.dreamsList.push(e)
             })
+          }else{
+            console.log(data.message)
+          }
         }
       })
       page++
@@ -36,7 +44,9 @@ Page({
     // Do something when page ready.
   },
   onShow: function() {
-    // Do something when page show.
+    if(app.globalData.isLogin) {
+        this.init()
+    }
   },
   onHide: function() {
     // Do something when page hide.

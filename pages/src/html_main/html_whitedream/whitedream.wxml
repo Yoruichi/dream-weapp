@@ -6,8 +6,7 @@
         <view class="padding-view" >做了一个很</view>
         <input bindchange="setDreamTypeContent" maxlength="4" class="padding-input" type="text" placeholder="慵懒" placeholder-class="placeholder" value="{{dreamTypeContent}}"/>
         <view class="padding-view">的梦。我梦见</view>
-        <input bindchange="setContent" class="padding-input dream_content" maxlength="220" type="textarea" placeholder="自己化身成了一只猫,你呢?" placeholder-class="placeholder" value="{{content}}" />
-        <textarea editable="true">sss</textarea>
+        <input bindchange="setContent" class="padding-input dream_content" maxlength="220" type="text" placeholder="自己化身成了一只猫,你呢?" placeholder-class="placeholder" value="{{content}}" />
     </view>
     <view class="images-wrapper">
         <!--<text class="images-text">请选择图片</text>-->

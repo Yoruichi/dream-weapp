@@ -56,7 +56,7 @@ function timeInterval(t) {
     if(interval <= 3600000) {
       r = Math.floor(interval/60000) + '分钟前'
     } else if(interval <= 86400000) {
-      r = Math.floor(interval/86400000) + '小时前'
+      r = Math.floor(interval/3600000) + '小时前'
     } else {
       var d = new Date()
       d.setTime(t)

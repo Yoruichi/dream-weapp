@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/index/index",
     "pages/src/html_main/html_showdreams/showdreams",
+    "pages/index/index",
     "pages/src/html_main/html_whitedream/whitedream",
     "pages/src/html_user/user",
     "pages/src/html_user/html_showbyuser/showbyuser",
