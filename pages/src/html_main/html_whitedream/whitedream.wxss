@@ -1,24 +1,41 @@
+.column-box {
+  display: flex;
+  flex-direction:column;
+  flex-wrap: nowrap;
+}
+.row-box {
+  font-size: 28rpx;
+  display: flex;
+  flex-flow: row wrap;
+  padding-top: 0;
+  padding-left: 1rpx;
+  margin: 1rpx;
+}
+.padding-view {
+  display: flex;
+  padding-top: 10rpx
+}
+.padding-input {
+  font-size: 28rpx;
+  display: flex;
+  flex-flow: row wrap;
+}
+.placeholder{
+  color: gainsboro;
+  font-size: 26rpx; 
+}
 .dream_content{
     width: 100%;
     min-height: 5rem;
 }
-.header {
-  font-size: 28rpx;
-  display: block;
-  padding-top: 0;
-  padding-left: 1rpx;
-  position: relative;
+.button {
+  width: 100%;
+  margin-top: 30rpx;
+  margin-bottom: 0;
 }
-.padding-view {
-  display: inline;
-  position: relative;
-}
-.padding-input {
-  display: inline;
-}
-.placeholder{
-  color: gainsboro;
-  font-size: 23rpx; 
+.actionBottom {
+  height: 20rpx;
+  background-color: #999;
 }
 .images-wrapper {
   padding: 20rpx;

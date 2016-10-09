@@ -2,6 +2,8 @@ var util = require('../../../../utils/util.js')
 var app = getApp()
 Page({
   data: {
+    actionSheetHidden:false,
+    actionSheedItems:[{s:'公开的', v:'PUBLIC'}, {s:'私密的', v:'PRIVATE'}],
     toastStatus: true,
     toasContent:"默认",
     dreamTime:'',
@@ -10,6 +12,9 @@ Page({
     content:'',
     type:'PUBLIC',
     imageList:[]
+  },
+  bindItemTap:function(e) {
+     this.setData({type:e.currentTarget.dataset.name,actionSheetHidden:true})
   },
   onLoad: function(options) {
     this.setData({dreamTime:util.dateFormat(new Date(),'dd/MM/yyyy hh')})

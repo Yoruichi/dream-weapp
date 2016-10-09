@@ -1,15 +1,16 @@
-<view class="unii-content">
-    <view class="header">
+<view class="unii-content column-box">
+    <view class="row-box">
         <view class="padding-view">{{dreamTime}}。</view>
         <view class="padding-view">我在</view>
-        <input bindchange="setDreamLocationContent" class="padding-view padding-input" type="text" placeholder="家里的沙发上" placeholder-class="placeholder" value="{{dreamLocationContent}}"/>
+        <input bindchange="setDreamLocationContent" maxlength="8" class="padding-input" type="text" placeholder="家里的沙发上" placeholder-class="placeholder" value="{{dreamLocationContent}}"/>
         <view class="padding-view" >做了一个很</view>
-        <input bindchange="setDreamTypeContent" class="padding-view padding-input" type="text" placeholder="慵懒" placeholder-class="placeholder" value="{{dreamTypeContent}}"/>
+        <input bindchange="setDreamTypeContent" maxlength="4" class="padding-input" type="text" placeholder="慵懒" placeholder-class="placeholder" value="{{dreamTypeContent}}"/>
         <view class="padding-view">的梦。我梦见</view>
-        <input bindchange="setContent" class="padding-view padding-input" type="text" placeholder="自己化身成了一只猫,你呢?" placeholder-class="placeholder" class="dream_content" value="{{content}}" />
+        <input bindchange="setContent" class="padding-input dream_content" maxlength="220" type="textarea" placeholder="自己化身成了一只猫,你呢?" placeholder-class="placeholder" value="{{content}}" />
+        <textarea editable="true">sss</textarea>
     </view>
     <view class="images-wrapper">
-        <text class="images-text">请选择图片</text>
+        <!--<text class="images-text">请选择图片</text>-->
         <view class="images-list">
         <block wx:for="{{imageList}}" wx:for-item="image">
             <image src="{{image}}" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
@@ -20,8 +21,14 @@
         </view>
         </view>
     </view>
+    <button class="button" bindtap="setLoading">发布</button>
 </view>
-<button bindtap="setLoading">发布</button>
+<action-sheet hidden="{{actionSheetHidden}}">
+    <block wx:for="{{actionSheedItems}}" wx:for-item="item">
+        <action-sheet-item bindtap="bindItemTap" data-name="{{item.v}}">{{item.s}}</action-sheet-item>
+    </block>
+    <view class="actionBottom" />
+</action-sheet>
 <toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
     {{toasContent}}
 </toast>

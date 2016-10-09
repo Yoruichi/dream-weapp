@@ -17,24 +17,24 @@
     "navigationBarTextStyle":"white"
   },
   "tabBar": {
-    "color": "#9400D3",
-    "selectedColor": "#3cc51f",
-    "borderStyle": "black",
+    "color": "#2c2c2c",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "white",
     "backgroundColor": "#ffffff",
     "list": [{
       "pagePath": "pages/src/html_main/html_showdreams/showdreams",
-      "iconPath": "pages/src/imgs/icon_component.png",
-      "selectedIconPath": "pages/src/imgs/icon_component_HL.png",
+      "iconPath": "pages/src/imgs/recover.png",
+      "selectedIconPath": "pages/src/imgs/recover_selected.png",
       "text": "广场"
     }, {
       "pagePath": "pages/src/html_main/html_whitedream/whitedream",
-      "iconPath": "pages/src/imgs/icon_API.png",
-      "selectedIconPath": "pages/src/imgs/icon_API_HL.png",
+      "iconPath": "pages/src/imgs/send.png",
+      "selectedIconPath": "pages/src/imgs/send_selected.png",
       "text": "写梦"
     }, {
       "pagePath": "pages/src/html_user/user",
-      "iconPath": "pages/src/imgs/icon_API.png",
-      "selectedIconPath": "pages/src/imgs/icon_API_HL.png",
+      "iconPath": "pages/src/imgs/self.png",
+      "selectedIconPath": "pages/src/imgs/self_selected.png",
       "text": "我"
     }]
   },
