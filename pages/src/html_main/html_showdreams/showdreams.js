@@ -8,11 +8,15 @@ Page({
     toasContent:"默认",
     page: 0,
     limit: 4,
-    scrollTop: 0,
-    dreamsList:new Array()
+    dreamsList:new Array(),
+    scrollTop:1
   },
   back:function() {
-    this.setData({scrollTop:0})
+    if(this.data.scrollTop == 0) {
+      this.setData({scrollTop:1})
+    } else {
+      this.setData({scrollTop:0})
+    }
   },
   onLoad: function(options) {
     app.setPreview({url:'/pages/src/html_main/html_showdreams/showdreams'})
@@ -48,10 +52,11 @@ Page({
   },
   init: function(cb){
     //TOOD 请求梦的数据，0页清空，添加，其他追加内容
+    this.back()
     var newData = this.data
     newData.dreamsList = new Array()
     newData.page = 0
-    newData.scrollTop = 0
+    newData.scrollTop = 1
     this.getDreams(newData, cb)
   },
   onReady: function() {
@@ -76,7 +81,7 @@ Page({
     this.init(wx.stopPullDownRefresh());
   },
   pullUpLoad: function( e ) {
-    console.log( "上拉拉加载更多...." + this.data.page )
+    console.log( "上拉拉加载更多...." + this.data.scrollTop )
     var newData = this.data
     this.getDreams(newData)
   },
