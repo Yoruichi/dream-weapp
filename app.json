@@ -7,8 +7,7 @@
     "pages/src/html_user/html_showbyuser/showbyuser",
     "pages/src/html_user/html_setmenu/setmenu",
     "pages/src/html_user/html_userinfo/userinfo",
-    "pages/test_my/test_my",
-    "pages/logs/logs"
+    "pages/src/html_main/html_send/send"
   ],
   "window":{
     "backgroundTextStyle":"light",

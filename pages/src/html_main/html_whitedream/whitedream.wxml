@@ -24,7 +24,7 @@
         </view>
         </view>
     </view>
-    <button class="button" bindtap="setLoading">发布</button>
+    <button class="button" bindtap="setLoading" disabled="{{disabled}}">发布</button>
 </view>
 <action-sheet hidden="{{actionSheetHidden}}">
     <block wx:for="{{actionSheedItems}}" wx:for-item="item">

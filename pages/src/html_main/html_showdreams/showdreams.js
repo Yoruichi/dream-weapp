@@ -62,6 +62,7 @@ Page({
   },
   onShow: function() {
     console.log("dreams page on show now this.data.lastFlush time is " + this.data.lastFlush)
+    app.setPreview({url:'/pages/src/html_main/html_showdreams/showdreams'})
     if(app.globalData.isLogin) {
       if(this.data.lastFlush == 0 || (new Date().getTime() - this.data.lastFlush) > 5 * 1000) {
         this.init()
