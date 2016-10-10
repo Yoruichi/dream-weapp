@@ -12,7 +12,7 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#A020F0",
+    "navigationBarBackgroundColor": "#11cd6e",
     "navigationBarTitleText": "假装在登录...",
     "navigationBarTextStyle":"white"
   },
@@ -20,22 +20,22 @@
     "color": "#2c2c2c",
     "selectedColor": "#11cd6e",
     "borderStyle": "white",
-    "backgroundColor": "#ffffff",
+    "backgroundColor": "#ecf0f1",
     "list": [{
       "pagePath": "pages/src/html_main/html_showdreams/showdreams",
       "iconPath": "pages/src/imgs/recover.png",
       "selectedIconPath": "pages/src/imgs/recover_selected.png",
-      "text": "广场"
+      "text": "梦迹"
     }, {
       "pagePath": "pages/src/html_main/html_whitedream/whitedream",
       "iconPath": "pages/src/imgs/send.png",
       "selectedIconPath": "pages/src/imgs/send_selected.png",
-      "text": "写梦"
+      "text": "梦梦"
     }, {
       "pagePath": "pages/src/html_user/user",
       "iconPath": "pages/src/imgs/self.png",
       "selectedIconPath": "pages/src/imgs/self_selected.png",
-      "text": "我"
+      "text": "追梦者"
     }]
   },
   "networkTimeout": {

@@ -2,6 +2,8 @@ var app = getApp()
 var util = require('../../../../utils/util.js')
 Page({
   data: {
+    lastFlush:new Date().getTime(),
+    lastFlushSucc:false,
     text: "This is page data.",
     toastStatus: true,
     toasContent:"默认",
@@ -18,34 +20,40 @@ Page({
       }
   },
   init: function(){
-      //TOOD 请求梦的数据，0页清空，添加，其他追加内容
-      var newData = this.data
-      var page = newData.nowpage
-      page = page == undefined ? 0 : page
-      app.request({
-        url:'op/messageView/check',
-        data:'limit='+newData.limit+'&index='+newData.nowpage * newData.limit,
-        succ:function(data){
-          if(data.succ){
-            data.obj.forEach(function(e){
-              e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
-              newData.dreamsList.push(e)
-            })
-          }else{
-            console.log(data.message)
-          }
+    //TOOD 请求梦的数据，0页清空，添加，其他追加内容
+    var newData = this.data
+    var page = newData.nowpage
+    page = page == undefined ? 0 : page
+    app.request({
+      url:'op/messageView/check',
+      data:'limit='+newData.limit+'&index='+newData.nowpage * newData.limit,
+      succ:function(data){
+        if(data && data.succ) {
+          data.obj.forEach(function(e){
+            e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
+            e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
+            newData.dreamsList.push(e.dreamMessageView)
+          })
+        }else{
+          console.log(data ? data.message : 'not login')
         }
-      })
-      page++
-      newData.nowpage = page
-      this.setData(newData)
+      }
+    })
+    page++
+    newData.nowpage = page
+    newData.lastFlushSucc = true
+    this.setData(newData)
   },
   onReady: function() {
     // Do something when page ready.
   },
   onShow: function() {
-    if(app.globalData.isLogin) {
-        this.init()
+    if(this.data.lastFlushSucc) {
+      if((new Date().getTime() - this.data.lastFlush) > 5 * 60 * 1000) {
+        this.onPullDownRefresh()
+      }
+    } else {
+      this.onPullDownRefresh()
     }
   },
   onHide: function() {
@@ -56,7 +64,7 @@ Page({
   },
   //下拉刷新
   onPullDownRefresh: function() {
-    var obj = {nowpage: 0, limit:10};
+    var obj = {nowpage: 0, limit:10, lastFulsh:new Date().getTime()};
     this.setData(obj);
     this.init();
   },
@@ -87,8 +95,8 @@ Page({
   previewImage: function (e) {
     var current = e.target.dataset.src;
     wx.previewImage({
-      current: current,
-      urls: this.data.imageList
+      current:current,
+      urls:[current]
     })
   }
 })

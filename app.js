@@ -23,10 +23,29 @@ App({
   onLaunch: function () {
     //调用API从本地缓存中获取数据
     var sid = wx.getStorageSync('sessionId')
+    //console.log('got sid from storage is ' + sid)
     if(sid) {
-      this.globalData = {isLogin:true,
+      var that = this
+      this.globalData = {
+        isLogin:false,
         globalUrlHeader:'http://localhost:8079/',
-        jSessionId:sid,preview:{}}
+        jSessionId:sid
+      }
+      this.request({
+        url:'op/dreamer/checkLogin',
+        succ:function(data){
+          if(data && data.succ) {
+            that.globalData = {isLogin:true,
+            globalUrlHeader:'http://localhost:8079/',
+            jSessionId:sid,
+            preview:{}}
+          }else{
+            console.log('try login again')
+          }
+        }
+      })
+    } else {
+      console.log('not got sid from storge')
     }
   },
   preview:{},
