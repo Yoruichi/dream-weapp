@@ -71,9 +71,9 @@ Page({
             wx.setStorageSync('contentHolder', that.data.content)
             that.openToast("发布成功")
             that.updatePlaceHolder()
-            wx.navigateTo({
-              url: app.getPreview().url
-            })
+            // wx.navigateTo({
+            //   url: app.getPreview().url
+            // })
           }else{
             console.log(data.message)
           }
