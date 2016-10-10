@@ -2,24 +2,28 @@ var app = getApp()
 var util = require('../../../../utils/util.js')
 Page({
   data: {
-    lastFlush:new Date().getTime(),
-    lastFlushSucc:false,
+    lastFlush:0,
     text: "This is page data.",
     toastStatus: true,
     toasContent:"默认",
     page: 0,
-    limit:4,
+    limit: 4,
+    scrollTop: 0,
     dreamsList:new Array()
+  },
+  back:function() {
+    this.setData({scrollTop:0})
   },
   onLoad: function(options) {
     app.setPreview({url:'/pages/src/html_main/html_showdreams/showdreams'})
     if(app.globalData.isLogin) {
-        this.setData(this.init())
-      } else {
-        wx.navigateTo({url:'../../../index/index'})
+      this.init()
+    } else {
+      wx.navigateTo({url:'../../../index/index'})
     }
   },
   getDreams:function(p, cb) {
+    var that = this
     app.request({
       url:'op/messageView/check',
       data:'limit=' + p.limit + '&index=' + p.page * p.limit,
@@ -30,6 +34,9 @@ Page({
             e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
             p.dreamsList.push(e.dreamMessageView)
           })
+          p.page = p.page + 1
+          p.lastFlush = new Date().getTime()
+          that.setData(p)
         }else{
           console.log(data ? data.message : 'not login')
         }
@@ -44,22 +51,22 @@ Page({
     var newData = this.data
     newData.dreamsList = new Array()
     newData.page = 0
+    newData.scrollTop = 0
     this.getDreams(newData, cb)
-    newData.page = newData.page + 1
-    newData.lastFlushSucc = true
-    return newData
   },
   onReady: function() {
     console.log("dreams page on ready now")
+    this.setData({lastFlush:new Date().getTime()})
   },
   onShow: function() {
-    if(this.data.lastFlushSucc && (new Date().getTime() - this.data.lastFlush) > 5 * 1000) {
-      this.setData(this.init())
+    console.log("dreams page on show now this.data.lastFlush time is " + this.data.lastFlush)
+    if(this.data.lastFlush > 0 && (new Date().getTime() - this.data.lastFlush) > 5 * 1000) {
+      this.init()
     }
-    console.log("dreams page on show now this.data.dreamList length is " + this.data.dreamsList.length)
   },
   onHide: function() {
     console.log("dreams page on hide now")
+   
   },
   onUnload: function() {
     // Do something when page close.
@@ -72,8 +79,6 @@ Page({
     console.log( "上拉拉加载更多...." + this.data.page )
     var newData = this.data
     this.getDreams(newData)
-    newData.page = newData.page + 1
-    this.setData(newData)
   },
   // Event handler.
   showContent: function(obj) {

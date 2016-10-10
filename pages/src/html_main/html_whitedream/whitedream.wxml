@@ -2,9 +2,13 @@
     <view class="row-box">
         <view class="padding-view">{{dreamTime}}。</view>
         <view class="padding-view">我在</view>
+        <view style="width:225rpx;">
         <input bindchange="setDreamLocationContent" maxlength="8" class="padding-input" type="text" placeholder="{{dreamLocationContentHolder}}" placeholder-class="placeholder" value="{{dreamLocationContent}}"/>
+        </view>
         <view class="padding-view" >做了一个很</view>
+        <view style="width:112.5rpx;">
         <input bindchange="setDreamTypeContent" maxlength="4" class="padding-input" type="text" placeholder="{{dreamTypeContentHolder}}" placeholder-class="placeholder" value="{{dreamTypeContent}}"/>
+        </view>
         <view class="padding-view">的梦。我梦见</view>
         <input bindchange="setContent" class="padding-input dream_content" maxlength="220" type="text" placeholder="{{contentHolder}}" placeholder-class="placeholder" value="{{content}}" />
     </view>

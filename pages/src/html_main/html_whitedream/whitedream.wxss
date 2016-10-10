@@ -13,7 +13,7 @@
 }
 .padding-view {
   display: flex;
-  padding-top: 10rpx
+  padding-top: 0.3rem;
 }
 .padding-input {
   font-size: 28rpx;

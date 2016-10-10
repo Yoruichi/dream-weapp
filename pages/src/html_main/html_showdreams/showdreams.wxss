@@ -53,6 +53,7 @@
     text-indent: 2rem;
     height: 1.5rem;
     line-height: .6rem;
+    width:3rem;
 }
 .dream_photos{
     margin: 0.65rem 0;

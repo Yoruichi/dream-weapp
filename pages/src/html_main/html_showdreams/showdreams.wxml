@@ -1,4 +1,4 @@
-<scroll-view class="unii-content dream_list" scroll-y="true" scroll-x="false" lower-threshold="1" bindscrolltolower="pullUpLoad">
+<scroll-view class="unii-content dream_list" scroll-y="true" scroll-x="false" lower-threshold="1" bindscrolltolower="pullUpLoad" scroll-top="{{scrollTop}}">
     <block wx:for="{{dreamsList}}" wx:for-item="dream">
         <view class="dream_line">
             <view class="dream_title">
@@ -32,7 +32,8 @@
             </view>
         </view>
     </block>
+    <button bindtap="back">back</button>
+</scroll-view>
     <toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
         {{toasContent}}
     </toast>
-</scroll-view>
