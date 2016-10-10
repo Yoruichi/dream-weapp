@@ -19,11 +19,9 @@ Page({
     }
   },
   onLoad: function(options) {
-    app.setPreview({url:'/pages/src/html_main/html_showdreams/showdreams'})
+    console.log('dreams is on load now')
     if(app.globalData.isLogin) {
       this.init()
-    } else {
-      wx.navigateTo({url:'../../../index/index'})
     }
   },
   getDreams:function(p, cb) {
@@ -61,17 +59,19 @@ Page({
   },
   onReady: function() {
     console.log("dreams page on ready now")
-    this.setData({lastFlush:new Date().getTime()})
   },
   onShow: function() {
     console.log("dreams page on show now this.data.lastFlush time is " + this.data.lastFlush)
-    if(this.data.lastFlush > 0 && (new Date().getTime() - this.data.lastFlush) > 5 * 1000) {
-      this.init()
+    if(app.globalData.isLogin) {
+      if(this.data.lastFlush == 0 || (new Date().getTime() - this.data.lastFlush) > 5 * 1000) {
+        this.init()
+      }
+    } else {
+      wx.navigateTo({url:'../../../index/index'})
     }
   },
   onHide: function() {
     console.log("dreams page on hide now")
-   
   },
   onUnload: function() {
     // Do something when page close.

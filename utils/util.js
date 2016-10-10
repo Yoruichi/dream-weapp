@@ -15,6 +15,15 @@ function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+function sleep(numberMillis) { 
+  var now = new Date(); 
+  var exitTime = now.getTime() + numberMillis; 
+  while (true) { 
+    now = new Date(); 
+    if (now.getTime() > exitTime) 
+      return; 
+    } 
+}
 
 function randomId(len) {
   len = len || 32;
@@ -86,5 +95,6 @@ module.exports = {
   randomId: randomId,
   writeObj: writeObj,
   timeInterval: timeInterval,
-  dateFormat: dateFormat
+  dateFormat: dateFormat,
+  sleep: sleep
 }
