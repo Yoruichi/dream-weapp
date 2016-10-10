@@ -1,11 +1,13 @@
+var app = getApp()
 Page({
   data: {
     userphoto: "../imgs/icon64_appwx_logo.png",
     dreamimage: "../imgs/icon64_appwx_logo.png",
-    setMenuimage: "../imgs/icon64_appwx_logo.png"
+    setMenuimage: "../imgs/icon64_appwx_logo.png",
+    userInfo:{}
   },
   onLoad: function(options) {
-    // Do some initialize when page load.
+    
   },
   onReady: function() {
     // Do something when page ready.

@@ -21,7 +21,13 @@ Page({
      this.setData({type:e.currentTarget.dataset.name,actionSheetHidden:true})
   },
   onLoad: function(options) {
+    var dtch = wx.getStorageSync('dreamTypeContentHolder')
+    var dlch = wx.getStorageSync('dreamLocationContentHolder')
+    var ch = wx.getStorageSync('contentHolder')
     this.setData({dreamTime:util.dateFormat(new Date(),'dd/MM/yyyy hh')})
+    if(dtch && dlch && ch) {
+      this.setData({contentHolder:ch,dreamTypeContentHolder:dtch,dreamLocationContentHolder:dlch})
+    }
   },
   onReady: function() {
     // Do something when page ready.
@@ -54,6 +60,9 @@ Page({
         this.data.dreamLocationContent + '&content=' + this.data.content + '&type=' + this.data.type +(this.data.imageList.length > 0?'&imageUrl=' + this.data.imageList.join():''),
         succ:function(data) {
           if(data.succ) {
+            wx.setStorageSync('dreamTypeContentHolder', that.data.dreamTypeContent)
+            wx.setStorageSync('dreamLocationContentHolder', that.data.dreamLocationContent)
+            wx.setStorageSync('contentHolder', that.data.content)
             that.openToast("发布成功")
             that.updatePlaceHolder()
             // wx.redirectTo({
@@ -73,7 +82,7 @@ Page({
       content:'',
       dreamTypeContentHolder:this.data.dreamTypeContent,
       dreamLocationContentHolder:this.data.dreamLocationContent,
-      contentHolder:dreamLocationContentHolder.content
+      contentHolder:this.data.content
     })
   },
   openToast: function(content){

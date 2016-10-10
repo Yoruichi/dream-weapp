@@ -21,5 +21,8 @@ Page({
           }
         }
       })
+  },
+  onShow: function () {
+   wx.navigateBack() 
   }
 })

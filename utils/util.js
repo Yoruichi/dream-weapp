@@ -63,7 +63,7 @@ function timeInterval(t) {
       r = dateFormat(d, 'dd/MM')
     }
   }
-  console.log(t + ' with ' + now + ' interval ' + interval + ' should show ' + r)
+ // console.log(t + ' with ' + now + ' interval ' + interval + ' should show ' + r)
   return r
 }
 

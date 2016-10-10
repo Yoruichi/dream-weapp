@@ -1,12 +1,16 @@
 .dream_list{
-    
+    height: 100%;
+    width: 708rpx;
+    margin-left: 2rpx
 }
 .dream_line {
     border-bottom: 2px solid #DBDBDB;
+    display: flex;
+    flex-flow: column nowrap
 }
 .dream_title{
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     height: 3rem;
     color: #8A8A8A;
 }
