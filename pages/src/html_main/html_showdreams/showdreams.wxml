@@ -1,4 +1,4 @@
-<scroll-view class="unii-content dream_list" scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="50" bindscrolltolower="pullUpLoad">
+<scroll-view class="unii-content dream_list" bindscroll="scroll" scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" bindscrolltolower="pullUpLoad">
     <loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
     <block wx:for="{{dreamsList}}" wx:for-item="dream">
         <view class="dream_line">
@@ -30,16 +30,19 @@
                 <image wx:if="{{dream.isGreated}}" data-mid="{{dream.dreamMessageView.messageId}}" bindtap="undo_well" class="ub-img do_act_icon" src="../../imgs/greated.png"></image>
                 <image wx:if="{{!dream.isGreated}}" data-mid="{{dream.dreamMessageView.messageId}}" bindtap="do_well" class="ub-img do_act_icon" src="../../imgs/greater.png"></image>
                 <image bindtap="do_share" class="ub-img do_act_icon" src="../../imgs/share.png"></image>
-                <image bindtap="do_reply" class="ub-img do_act_icon" src="../../imgs/reply.png"></image>
-            </view>
-            <view class="dream_reply">
-                <input data-mid="{{dream.dreamMessageView.messageId}}" bindchange="setReply" maxlength="255" class="reply_input" type="text" placeholder="说点儿什么" placeholder-class="placeholder" value="{{reply}}"/>
-                <button class="reply_button">评论</button>
+                <image data-mid="{{dream.dreamMessageView.messageId}}" bindtap="opReply" class="ub-img do_act_icon" src="../../imgs/reply.png"></image>
             </view>
         </view>
     </block>
     <!--<button bindtap="back">back</button>-->
-    <toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
-        {{toasContent}}
-    </toast>
 </scroll-view>
+<action-sheet hidden="{{!opReply}}" bindchange="onReplyChange">
+    <view wx:if="{{opReply}}" class="dream_reply">
+        <input auto-focus="true" bindchange="setReply" maxlength="255" class="reply_input" type="text" placeholder="说点儿什么" placeholder-class="placeholder" value=""/>
+        <button class="reply_button" bindtap="do_reply">评论</button>
+    </view>
+    <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+</action-sheet>
+<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
+    {{toasContent}}
+</toast>

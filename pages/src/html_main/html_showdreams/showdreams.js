@@ -10,7 +10,17 @@ Page({
     limit: 4,
     dreamsList:new Array(),
     noLoading:false,
+    opReply:false,
+    reply:{content:''},
     scrollTop:1
+  },
+  scroll:function(e){
+    console.log(util.writeObj(e))
+  },
+  onReplyChange: function(e) {
+    this.setData({
+      opReply: !this.data.opReply
+    })
   },
   back:function() {
     if(this.data.scrollTop == 0) {
@@ -58,7 +68,6 @@ Page({
     var newData = this.data
     newData.dreamsList = new Array()
     newData.page = 0
-    //app.checkLoginReq({succ:this.getDreams, succParams:{newData, cb}, fail:wx.navigateTo, failParams:{url:'/pages/index/index'}})
     this.getDreams(newData, cb)
   },
   onReady: function() {
@@ -134,11 +143,36 @@ Page({
       }
     })
   },
-  do_share: function(dreamer_id){
+  do_share: function(dreamer_id) {
       this.openToast("分享成功");
   },
-  do_reply: function(dreamer_id){
-      this.openToast("内容回复成功");
+  opReply:function(e) {
+    this.setData({opReply:true, reply:{replyTo:e.currentTarget.dataset.mid}})
+  },
+  setReply:function(e) {
+    var rep = this.data.reply
+    rep.content = e.detail.value
+    console.log('reply ' + e.detail.value + ' to message id ' + rep.replyTo)
+    this.setData({reply:rep})
+  },
+  do_reply: function(e) {
+    var that = this
+    console.log('current reply ' + that.data.reply.content + ' to message id ' + that.data.reply.replyTo)
+    if(!that.data.reply.content || that.data.reply.content.length == 0) {this.openToast('追梦怎能无言')}
+    else {
+      app.checkLoginReq({
+        url:'op/reply/message',
+        data:'messageId=' + that.data.reply.replyTo + '&content=' + that.data.reply.content,
+        succ:function(data) {
+          if(data.succ){
+            that.setData({opReply:false, reply:{content:''}})
+            that.openToast("已留下你的梦迹")
+          } else {
+            that.openToast("梦迹略重啊")
+          }
+        }
+      })
+    }
   },
   openToast: function(content){
       var obj = {};
