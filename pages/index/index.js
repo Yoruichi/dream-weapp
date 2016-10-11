@@ -23,7 +23,7 @@ Page({
           wx.setStorageSync('sessionId', data.message)
           util.sleep(5000)
           console.log('login succ, will be back to preview page...')
-          wx.navigateBack()
+          //wx.navigateBack()
         } else {
           console.log('login failed.')
         }
