@@ -11,6 +11,8 @@
         </view>
         <view class="padding-view">的梦。我梦见</view>
         <input bindchange="setContent" class="padding-input dream_content" maxlength="220" type="text" placeholder="{{contentHolder}}" placeholder-class="placeholder" value="{{content}}" />
+        <!--<text>aaa
+        ddd</text>-->
     </view>
     <view class="images-wrapper">
         <!--<text class="images-text">请选择图片</text>-->
