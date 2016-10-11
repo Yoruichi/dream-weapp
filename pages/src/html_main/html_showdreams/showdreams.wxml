@@ -32,9 +32,9 @@
                 <image bindtap="do_share" class="ub-img do_act_icon" src="../../imgs/share.png"></image>
                 <image bindtap="do_reply" class="ub-img do_act_icon" src="../../imgs/reply.png"></image>
             </view>
-            <view>
-                <input data-mid="{{dream.dreamMessageView.messageId}}" bindchange="setReply" maxlength="255" class="reply" type="text" placeholder="{{replyHolder}}" placeholder-class="placeholder" value="{{reply}}"/>
-                <button>回复</button>
+            <view class="dream_reply">
+                <input data-mid="{{dream.dreamMessageView.messageId}}" bindchange="setReply" maxlength="255" class="reply_input" type="text" placeholder="说点儿什么" placeholder-class="placeholder" value="{{reply}}"/>
+                <button class="reply_button">评论</button>
             </view>
         </view>
     </block>
