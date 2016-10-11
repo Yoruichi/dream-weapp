@@ -12,10 +12,11 @@ Page({
     noLoading:false,
     opReply:false,
     reply:{content:''},
-    scrollTop:1
+    scrollTop:0
   },
   scroll:function(e){
-    console.log(util.writeObj(e))
+    //console.log(util.writeObj(e))
+    this.setData({scrollTop:e.detail.scrollTop})
   },
   onReplyChange: function(e) {
     this.setData({
@@ -23,11 +24,12 @@ Page({
     })
   },
   back:function() {
-    if(this.data.scrollTop == 0) {
-      this.setData({scrollTop:1})
-    } else {
-      this.setData({scrollTop:0})
-    }
+    // if(this.data.scrollTop == 0) {
+    //   this.setData({scrollTop:1})
+    // } else {
+    //   this.setData({scrollTop:0})
+    // }
+    this.setData({scrollTop:0})
   },
   loadingChange:function(){
     this.setData({'noLoading':true})

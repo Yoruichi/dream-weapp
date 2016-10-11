@@ -1,5 +1,5 @@
-<loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
 <scroll-view class="unii-content dream_list" bindscroll="scroll" scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" bindscrolltolower="pullUpLoad">
+    <loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
     <block wx:for="{{dreamsList}}" wx:for-item="dream">
         <view class="dream_line">
             <view data-did="{{dream.dreamMessageView.dreamerId}}" bindtap="checkDreamer" class="dream_title">
