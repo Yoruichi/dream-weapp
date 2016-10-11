@@ -89,6 +89,15 @@ function writeObj(obj){
  return description; 
 } 
 
+function remove(arr, cb) {
+  for (var i=0; i<arr.length; i++) {
+    if(cb(arr[i])) {
+      arr.splice(i, 1)
+      return
+    }
+  }
+}
+
 module.exports = {
   formatTime: formatTime,
   formatNumber: formatNumber,
@@ -96,5 +105,6 @@ module.exports = {
   writeObj: writeObj,
   timeInterval: timeInterval,
   dateFormat: dateFormat,
+  remove: remove,
   sleep: sleep
 }

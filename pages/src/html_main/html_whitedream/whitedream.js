@@ -60,7 +60,7 @@ Page({
     this.setData({disabled:true})
     this.openToast('发布中')
     var that = this
-      app.request({
+      app.checkLoginReq({
         url:'op/dreamMessage/send',
         data:'dreamTypeContent=' + this.data.dreamTypeContent + '&dreamTime=' + this.data.dreamTime + '&dreamLocationContent=' + 
         this.data.dreamLocationContent + '&content=' + this.data.content + '&type=' + this.data.type +(this.data.imageList.length > 0?'&imageUrl=' + this.data.imageList.join():''),

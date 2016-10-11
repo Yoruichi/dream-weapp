@@ -8,26 +8,27 @@ Page({
     userInfo: {},
   },
   onLoad: function () {
-    var that = this
-    //wx.getStorage()
-     app.request({
-        url:'dreamer/login/phone',
-        data:'phone=15210890151&password=hhhh',
-        succ:function(data) {
-          if(data && data.succ) {
-            app.globalData = {jSessionId:data.message, globalUrlHeader:'http://localhost:8079/',isLogin:true}
-            wx.setStorageSync('sessionId', data.message)
-            util.sleep(1000)
-            wx.navigateBack()
-            console.log('login succ, will be back to preview page...')
-          } else {
-            console.log('login failed.')
-          }
-        }
-      })
+    console.log('index is on load')
   },
   onShow: function () {
     console.log('index is on show')
+    var that = this
+    app.request({
+      url:'dreamer/login/phone',
+      data:'phone=15210890151&password=hhhh',
+      succ:function(data) {
+        if(data && data.succ) {
+          app.globalData.jSessionId = data.message
+          app.globalData.dreamerId = data.obj.id
+          wx.setStorageSync('sessionId', data.message)
+          util.sleep(5000)
+          console.log('login succ, will be back to preview page...')
+          wx.navigateBack()
+        } else {
+          console.log('login failed.')
+        }
+      }
+    })
   },
   onUnload: function() {
     console.log('index is on unload')
