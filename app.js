@@ -27,7 +27,7 @@ App({
         url:'op/dreamer/checkLogin',
         succ:function(data){
           if(data && data.succ) {
-            that.globalData.dreamerId=data.obj
+            that.globalData.userInfo=data.obj.dreamer
             //if(o.succ) o.succ(o.succParams)
             that.request(o)
           }else{
@@ -64,6 +64,6 @@ App({
   globalData:{
     globalUrlHeader:'http://localhost:8079/',
     jSessionId:'lalal',
-    dreamerId:0
+    userInfo:{}
   }
 })

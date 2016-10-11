@@ -33,7 +33,7 @@ Page({
       succ:function(data){
         if(data && data.succ) {
           data.obj.forEach(function(e){
-            var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.dreamerId})
+            var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.userInfo.id})
             if(f){e.isGreated = true} else {e.isGreated = false}
             e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
             e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
@@ -106,7 +106,7 @@ Page({
           var ds = that.data.dreamsList
           var dmv = ds.find(function(d){return d.dreamMessageView.messageId == mid})
           dmv.isGreated = true
-          dmv.greaterList.push({dreamerId:app.globalData.dreamerId,greaterId:data.obj.id})
+          dmv.greaterList.push({dreamerId:app.globalData.userInfo.id,greaterId:data.obj.id})
           that.setData({dreamsList:ds})
         } else {
           that.openToast("开了个小差");
@@ -126,7 +126,7 @@ Page({
           var ds = that.data.dreamsList
           var dmv = ds.find(function(d){return d.dreamMessageView.messageId == mid})
           dmv.isGreated = false
-          util.remove(dmv.greaterList,function(d){return d.dreamerId == app.globalData.dreamerId})
+          util.remove(dmv.greaterList,function(d){return d.dreamerId == app.globalData.userInfo.id})
           that.setData({dreamsList:ds})
         } else {
           that.openToast("开了个小差");

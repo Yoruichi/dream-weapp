@@ -32,6 +32,10 @@
                 <image bindtap="do_share" class="ub-img do_act_icon" src="../../imgs/share.png"></image>
                 <image bindtap="do_reply" class="ub-img do_act_icon" src="../../imgs/reply.png"></image>
             </view>
+            <view>
+                <input data-mid="{{dream.dreamMessageView.messageId}}" bindchange="setReply" maxlength="255" class="reply" type="text" placeholder="{{replyHolder}}" placeholder-class="placeholder" value="{{reply}}"/>
+                <button>回复</button>
+            </view>
         </view>
     </block>
     <!--<button bindtap="back">back</button>-->

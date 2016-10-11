@@ -19,7 +19,7 @@ Page({
       succ:function(data) {
         if(data && data.succ) {
           app.globalData.jSessionId = data.message
-          app.globalData.dreamerId = data.obj.id
+          app.globalData.userInfo = data.obj
           wx.setStorageSync('sessionId', data.message)
           util.sleep(5000)
           console.log('login succ, will be back to preview page...')

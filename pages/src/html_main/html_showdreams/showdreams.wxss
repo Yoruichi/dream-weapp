@@ -3,6 +3,10 @@
     width: 708rpx;
     margin-left: 2rpx
 }
+.placeholder{
+  color: gainsboro;
+  font-size: 26rpx; 
+}
 .dream_line {
     border-bottom: 2px solid #DBDBDB;
     display: flex;
