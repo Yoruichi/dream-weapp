@@ -1,0 +1,122 @@
+.dream_list{
+    height: 1300rpx;
+    width: 708rpx;
+    margin-left: 2rpx;
+}
+.placeholder{
+  color: gainsboro;
+  font-size: 26rpx; 
+}
+.dream_line {
+    border-bottom: 2px solid #DBDBDB;
+    display: flex;
+    flex-flow: column nowrap
+}
+.dream_title{
+    display: flex;
+    flex-flow: row nowrap;
+    height: 3rem;
+    color: #8A8A8A;
+}
+.dream_userinfo{
+    display: flex;
+    flex-direction: row; 
+    width: 75%;
+    height: 100%;
+}
+.user_photo{
+    margin-top: 0.75rem;
+    margin-right: 0.75rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.username{
+    font-size:30rpx;
+    text-indent: 2rem;
+    margin-top: 0.25rem;
+}
+.user_time{
+    display: flex;
+    flex-direction: row; 
+    justify-content: flex-end;
+    width: 25%;
+    height: 50%;
+    margin: .75rem 0;
+    border: 1px #DBDBDB solid;
+    border-radius: 0.6rem;
+    padding-right: 0.5rem;
+}
+.timetime_img{
+    margin-top: .25rem;
+    margin-right: 0.75rem;
+    width: 1rem;
+    height: 1rem;
+}
+.time_desc{
+    font-size: 26rpx;
+    text-indent: 2rem;
+    height: 1.5rem;
+    line-height: .6rem;
+    width:3rem;
+}
+.dream_photos{
+    margin: 0.65rem 0;
+}
+.dream_content{
+    margin: 0.65rem 0;
+    font-size: 38rpx;
+}
+.reply_ac{
+    background-color: black;
+}
+.dream_reply{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 16rpx;
+    margin-bottom: 16rpx;
+    border: 1px #DBDBDB solid;
+    width:708rpx;
+    margin-left: 16rpx;
+}
+.reply_input{
+    width:580rpx;
+    font-size: 26rpx;
+    justify-content: flex-start;
+}
+.reply_button{
+    height: 60rpx;
+    width:120rpx;
+    font-size: 26rpx;
+    margin-right: 0;
+    justify-content: flex-end;
+}
+.images-wrapper {
+  /*padding: 20rpx 0;*/
+  background-color: #fff;
+  margin-top: 20rpx;
+}
+.images-wrapper-text {
+  font-size: 28rpx;
+}
+.images-list {
+  display: flex;
+  margin-top: 20rpx;
+  flex-wrap: wrap;
+}
+.images-image {
+  width: 187.5rpx;
+  height: 187.5rpx;
+  margin: 10rpx;
+}
+
+.dream_act{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 0.5rem 0;
+}
+.do_act_icon{
+    width: 40rpx;
+    height: 40rpx;
+    margin: 15rpx 0.75rem;
+}

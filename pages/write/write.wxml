@@ -1,0 +1,39 @@
+<view class="unii-content column-box">
+    <view class="row-box">
+        <view class="padding-view">{{dreamTime}}。</view>
+        <view class="padding-view">我在</view>
+        <view style="width:225rpx;">
+        <input bindchange="setDreamLocationContent" maxlength="8" class="padding-input" type="text" placeholder="{{dreamLocationContentHolder}}" placeholder-class="placeholder" value="{{dreamLocationContent}}"/>
+        </view>
+        <view class="padding-view" >做了一个很</view>
+        <view style="width:112.5rpx;">
+        <input bindchange="setDreamTypeContent" maxlength="4" class="padding-input" type="text" placeholder="{{dreamTypeContentHolder}}" placeholder-class="placeholder" value="{{dreamTypeContent}}"/>
+        </view>
+        <view class="padding-view">的梦。我梦见</view>
+        <input bindchange="setContent" class="padding-input dream_content" maxlength="220" type="text" placeholder="{{contentHolder}}" placeholder-class="placeholder" value="{{content}}" />
+        <!--<text>aaa
+        ddd</text>-->
+    </view>
+    <view class="images-wrapper">
+        <!--<text class="images-text">请选择图片</text>-->
+        <view class="images-list">
+        <block wx:for="{{imageList}}" wx:for-item="image">
+            <image src="{{image}}" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
+        </block>
+        <view class="images-image image-plus" bindtap="chooseImage">
+            <view class="image-plus-horizontal"></view>
+            <view class="image-plus-vertical"></view>
+        </view>
+        </view>
+    </view>
+    <button class="button" bindtap="setLoading" disabled="{{disabled}}">发布</button>
+</view>
+<action-sheet hidden="{{actionSheetHidden}}">
+    <block wx:for="{{actionSheedItems}}" wx:for-item="item">
+        <action-sheet-item bindtap="bindItemTap" data-name="{{item.v}}">{{item.s}}</action-sheet-item>
+    </block>
+    <view class="actionBottom" />
+</action-sheet>
+<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
+    {{toasContent}}
+</toast>
