@@ -1,5 +1,0 @@
-<scroll-view scroll-y="true">
-    <view wx:for="{{[1,2,3,4,5,6,7,8,9]}}">
-        <view style="height:200rpx">{{item}}</view>
-    </view>
-</scroll-view>

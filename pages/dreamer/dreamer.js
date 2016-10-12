@@ -1,9 +1,9 @@
 var app = getApp()
 Page({
   data: {
-    userphoto: "../imgs/icon64_appwx_logo.png",
-    dreamimage: "../imgs/icon64_appwx_logo.png",
-    setMenuimage: "../imgs/icon64_appwx_logo.png",
+    userphoto: "/imgs/icon64_appwx_logo.png",
+    dreamimage: "/imgs/icon64_appwx_logo.png",
+    setMenuimage: "/imgs/icon64_appwx_logo.png",
     userInfo:{}
   },
   onLoad: function(options) {

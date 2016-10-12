@@ -1,13 +1,13 @@
 {
   "pages":[
-    "pages/src/html_main/html_showdreams/showdreams",
+    "pages/dreams/dreams",
     "pages/index/index",
-    "pages/src/html_main/html_whitedream/whitedream",
-    "pages/src/html_user/user",
-    "pages/src/html_user/html_showbyuser/showbyuser",
-    "pages/src/html_user/html_setmenu/setmenu",
-    "pages/src/html_user/html_userinfo/userinfo",
-    "pages/src/html_main/html_send/send"
+    "pages/write/write",
+    "pages/dreamer/dreamer",
+    "pages/dreamerdream/dreamerdream",
+    "pages/setting/setting",
+    "pages/dreamerinfo/dreamerinfo",
+    "pages/send/send"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -22,19 +22,19 @@
     "borderStyle": "white",
     "backgroundColor": "#ecf0f1",
     "list": [{
-      "pagePath": "pages/src/html_main/html_showdreams/showdreams",
-      "iconPath": "pages/src/imgs/recover.png",
-      "selectedIconPath": "pages/src/imgs/recover_selected.png",
+      "pagePath": "pages/dreams/dreams",
+      "iconPath": "imgs/recover.png",
+      "selectedIconPath": "imgs/recover_selected.png",
       "text": "梦迹"
     }, {
-      "pagePath": "pages/src/html_main/html_whitedream/whitedream",
-      "iconPath": "pages/src/imgs/send.png",
-      "selectedIconPath": "pages/src/imgs/send_selected.png",
+      "pagePath": "pages/write/write",
+      "iconPath": "imgs/send.png",
+      "selectedIconPath": "imgs/send_selected.png",
       "text": "梦梦"
     }, {
-      "pagePath": "pages/src/html_user/user",
-      "iconPath": "pages/src/imgs/self.png",
-      "selectedIconPath": "pages/src/imgs/self_selected.png",
+      "pagePath": "pages/dreamer",
+      "iconPath": "imgs/self.png",
+      "selectedIconPath": "imgs/self_selected.png",
       "text": "追梦者"
     }]
   },

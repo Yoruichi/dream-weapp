@@ -1,5 +1,0 @@
-<template name="toast_one_second">
-    <toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
-        {{toasContent}}
-    </toast>
-</template>
