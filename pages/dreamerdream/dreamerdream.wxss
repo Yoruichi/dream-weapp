@@ -1,12 +1,52 @@
+.dreamer{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    max-width: 750rpx;
+    padding: 3rpx;
+    border-bottom: 2px solid #DBDBDB;
+    min-height: 280rpx;
+    max-height: 280rpx;
+    background-color: #11ed5e;
+    justify-content: center;
+}
+.dreamer_center{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    height: 240rpx;
+    width: 180rpx;
+    justify-content: center;
+}
+.avatar{
+    height: 150rpx;
+    width: 150rpx;
+    background-color: #8A8A8A;
+    border-radius: 50%;
+}
+.nick{
+    width: 180rpx;
+    font-size: 12rpx;
+    text-align: center;
+    margin-top: 50rpx;
+}
 .dream_list{
-    
+    height: 1300rpx;
+    width: 700rpx;
+    margin-left: 2rpx;
+}
+.placeholder{
+  color: gainsboro;
+  font-size: 26rpx; 
 }
 .dream_line {
-    border-bottom: 2px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
+    display: flex;
+    flex-flow: column nowrap
 }
 .dream_title{
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     height: 3rem;
     color: #8A8A8A;
 }
@@ -49,6 +89,7 @@
     text-indent: 2rem;
     height: 1.5rem;
     line-height: .6rem;
+    width:3rem;
 }
 .dream_photos{
     margin: 0.65rem 0;
@@ -57,7 +98,30 @@
     margin: 0.65rem 0;
     font-size: 38rpx;
 }
-
+.reply_ac{
+    background-color: black;
+}
+.dream_reply{
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 16rpx;
+    margin-bottom: 16rpx;
+    border: 1px #DBDBDB solid;
+    width:708rpx;
+    margin-left: 16rpx;
+}
+.reply_input{
+    width:580rpx;
+    font-size: 26rpx;
+    justify-content: flex-start;
+}
+.reply_button{
+    height: 60rpx;
+    width:120rpx;
+    font-size: 26rpx;
+    margin-right: 0;
+    justify-content: flex-end;
+}
 .images-wrapper {
   /*padding: 20rpx 0;*/
   background-color: #fff;

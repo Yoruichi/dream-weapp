@@ -24,11 +24,6 @@ Page({
     })
   },
   back:function() {
-    // if(this.data.scrollTop == 0) {
-    //   this.setData({scrollTop:1})
-    // } else {
-    //   this.setData({scrollTop:0})
-    // }
     this.setData({scrollTop:0})
   },
   loadingChange:function(){
@@ -102,8 +97,9 @@ Page({
       console.log("内容展开伸缩");
   },
   checkDreamer: function(e) {
-    console.log('check dreamer info for dreamer by id ' + util.writeObj(e))
+    // console.log('check dreamer info for dreamer by id ' + util.writeObj(e))
     console.log('check dreamer info for dreamer by id ' + e.currentTarget.dataset.did)
+    wx.navigateTo({url:'/pages/dreamerdream/dreamerdream?did=' + e.currentTarget.dataset.did})
   },
   do_well: function(e){
     var mid = e.currentTarget.dataset.mid
