@@ -7,7 +7,8 @@
     "pages/dreamerdream/dreamerdream",
     "pages/setting/setting",
     "pages/dreamerinfo/dreamerinfo",
-    "pages/send/send"
+    "pages/send/send",
+    "pages/likeDream/likeDream"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -32,7 +33,7 @@
       "selectedIconPath": "imgs/send_selected.png",
       "text": "梦梦"
     }, {
-      "pagePath": "pages/dreamer",
+      "pagePath": "pages/dreamer/dreamer",
       "iconPath": "imgs/self.png",
       "selectedIconPath": "imgs/self_selected.png",
       "text": "追梦者"

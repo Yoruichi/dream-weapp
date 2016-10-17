@@ -2,23 +2,31 @@
     <view class="user_info">
         <navigator class="list_nav" url="html_userinfo/userinfo" hover-class="navigator-hover">
             <view class="listcontent_user">
-                <image src="{{userphoto}}" class="ub-img listimage_user"></image>
+                <image src="{{userInfo.avatarUrl}}" class="ub-img listimage_user"></image>
                 <view class="nameinfo">
                     <view class="username">
-                        黄瑜
+                        {{userInfo.nickName}}
                     </view>
                     <view class="usercount">
-                        账号：110
+                        账号：{{userInfo.username}}
                     </view>
                 </view>
             </view>
         </navigator>
     </view>
     <view class="mydreams">
-        <navigator class="list_nav" url="html_showbyuser/showbyuser" hover-class="navigator-hover">
+        <navigator class="list_nav" url="/pages/dreamerdream/dreamerdream?did={{userInfo.id}}" hover-class="navigator-hover">
             <view class="listcontent">
                 <image src="{{dreamimage}}" class="ub-img listimage"></image>
                 <text class="listtext">我的梦</text>
+            </view>
+        </navigator>
+    </view>
+    <view class="mydreams">
+        <navigator class="list_nav" url="/pages/likeDream/likeDream?did={{userInfo.id}}" hover-class="navigator-hover">
+            <view class="listcontent">
+                <image src="{{dreamimage}}" class="ub-img listimage"></image>
+                <text class="listtext">我的收藏</text>
             </view>
         </navigator>
     </view>

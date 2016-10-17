@@ -13,6 +13,7 @@ Page({
     // Do something when page ready.
   },
   onShow: function() {
+    this.setData({userInfo:app.globalData.userInfo})
   },
   onHide: function() {
     // Do something when page hide.

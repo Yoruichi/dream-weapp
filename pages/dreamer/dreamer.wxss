@@ -17,6 +17,8 @@
     width: 3rem;
     height: 3rem;
     margin: .5rem 1rem 0 0;
+    border-radius: 50%;
+    background-color: #D3D3D3;
 }
 .nameinfo{
     

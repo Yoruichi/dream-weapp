@@ -62,7 +62,7 @@ App({
     this.preview = p
   },
   globalData:{
-    globalUrlHeader:'http://localhost:8079/',
+    globalUrlHeader:'https://localhost:8443/',
     jSessionId:'lalal',
     userInfo:{}
   }
