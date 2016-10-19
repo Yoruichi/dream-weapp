@@ -1,6 +1,6 @@
 <scroll-view class="unii-content dream_list" bindscroll="scroll" scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" bindscrolltolower="pullUpLoad">
     <loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
-    <block wx:for="{{dreamsList}}" wx:for-item="dream">
+    <block wx:for="{{dreamsList}}" wx:for-item="dream" wx:key="dd">
         <view class="dream_line">
             <view data-did="{{dream.dreamMessageView.dreamerId}}" bindtap="checkDreamer" class="dream_title">
                 <view class="dream_userinfo">
@@ -12,23 +12,23 @@
                 <view class="user_time">
                     <image class="ub-img timetime_img" src="/imgs/green_tri.png"></image>
                     <text class="time_desc">
-                    {{dream.dreamMessageView.timeshow}}
+                    {{dream.timeshow}}
                     </text>
                 </view>
             </view>
             <view bindtap="showContent"  class="dream_content">
                 {{dream.dreamMessageView.content}}
             </view>
-            <view wx:if="{{dream.dreamMessageView.imageList.length > 0}}" class="images-wrapper">
+            <view wx:if="{{dream.imageList.length > 0}}" class="images-wrapper">
                 <view class="images-list">
-                    <block wx:for="{{dream.dreamMessageView.imageList}}" wx:for-item="image">
+                    <block wx:for="{{dream.imageList}}" wx:for-item="image">
                         <image src="{{image}}" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
                     </block>
                 </view>
             </view>
             <view class="dream_act">
-                <image wx:if="{{dream.isGreated}}" data-mid="{{dream.dreamMessageView.messageId}}" bindtap="undo_well" class="ub-img do_act_icon" src="/imgs/greated.png"></image>
-                <image wx:if="{{!dream.isGreated}}" data-mid="{{dream.dreamMessageView.messageId}}" bindtap="do_well" class="ub-img do_act_icon" src="/imgs/greater.png"></image>
+                <image wx:if="{{dream.greated}}" data-mid="{{dream.dreamMessageView.messageId}}" bindtap="undo_well" class="ub-img do_act_icon" src="/imgs/greated.png"></image>
+                <image wx:if="{{!dream.greated}}" data-mid="{{dream.dreamMessageView.messageId}}" bindtap="do_well" class="ub-img do_act_icon" src="/imgs/greater.png"></image>
                 <image bindtap="do_share" class="ub-img do_act_icon" src="/imgs/share.png"></image>
                 <image data-mid="{{dream.dreamMessageView.messageId}}" bindtap="opReply" class="ub-img do_act_icon" src="/imgs/reply.png"></image>
             </view>

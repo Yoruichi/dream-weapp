@@ -4,6 +4,7 @@ App({
     var url = this.globalData.globalUrlHeader + o.url
     var data = o.data
     var session = this.globalData.jSessionId
+    console.log('will request for url ' + o.url)
     wx.request({
       header:{
         'content-type':'application/x-www-form-urlencoded',
@@ -13,6 +14,7 @@ App({
       url:url,
       data:data,
       success:function(res) {
+        console.log('got response for url ' + o.url)
         if(o.succ) {o.succ(res.data)}
       },
       fail:function(res) {
@@ -23,9 +25,11 @@ App({
   },
   checkLoginReq: function(o) {
     var that = this
+    console.log('will check login')
     this.request({
         url:'op/dreamer/checkLogin',
         succ:function(data){
+          console.log('got response for check login.')
           if(data && data.succ) {
             that.globalData.userInfo=data.obj.dreamer
             //if(o.succ) o.succ(o.succParams)
@@ -62,7 +66,8 @@ App({
     this.preview = p
   },
   globalData:{
-    globalUrlHeader:'https://localhost:8443/',
+    globalUrlHeader:'https://wechat.redtea.io/',
+    //globalUrlHeader:'http://localhost:8443/',    
     jSessionId:'lalal',
     userInfo:{}
   }

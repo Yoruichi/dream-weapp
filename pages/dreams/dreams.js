@@ -34,24 +34,31 @@ Page({
   },
   getDreams:function(p, cb) {
     var that = this
+    console.log('will get dreams.')
     app.checkLoginReq({
       url:'op/messageView/check',
       data:'limit=' + p.limit + '&index=' + p.page * p.limit,
       succ:function(data){
+        console.log('get dreams got response.' + data.succ)
         if(data && data.succ) {
-          data.obj.forEach(function(e){
-            var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.userInfo.id})
-            if(f){e.isGreated = true} else {e.isGreated = false}
-            e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
-            e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
-            p.dreamsList.push(e)
-          })
+          console.log('will render dreams for each' + util.writeObj(data.obj))
+          // data.obj.forEach(function(e){
+          //   var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.userInfo.id})
+          // if(f){e.isGreated = true} else {e.isGreated = false}
+          //   e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
+          //   e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
+          //   p.dreamsList.push(e)
+          // })
+          
+          p.dreamsList = p.dreamsList.concat(data.obj)
+          console.log('end for each and will render page')
           p.page = p.page + 1
           p.lastFlush = new Date().getTime()
           p.noLoading = true
           that.setData(p)
+          console.log('get dreams from remote server succ.')
         }else{
-          console.log(data ? data.message : 'not login')
+          console.log('get dreams failed. Caused by:' + data ? data.message : 'not login')
         }
         if(cb && typeof cb == 'function') {
           cb()
@@ -65,6 +72,7 @@ Page({
     var newData = this.data
     newData.dreamsList = new Array()
     newData.page = 0
+    console.log('will init to get dreams.')
     this.getDreams(newData, cb)
   },
   onReady: function() {
@@ -111,9 +119,12 @@ Page({
         if(data.succ) {
           that.openToast("点赞成功");
           var ds = that.data.dreamsList
-          var dmv = ds.find(function(d){return d.dreamMessageView.messageId == mid})
-          dmv.isGreated = true
-          dmv.greaterList.push({dreamerId:app.globalData.userInfo.id,greaterId:data.obj.id})
+          for(var i=0;i<ds.length;i++) {
+            if(ds[i].dreamMessageView.messageId == mid) {
+              ds[i].greated = true
+              ds[i].greaterList.push({dreamerId:app.globalData.userInfo.id,greaterId:data.obj.id})
+            }
+          }
           that.setData({dreamsList:ds})
         } else {
           that.openToast("开了个小差");
@@ -131,9 +142,16 @@ Page({
         if(data.succ) {
           that.openToast("取消成功");
           var ds = that.data.dreamsList
-          var dmv = ds.find(function(d){return d.dreamMessageView.messageId == mid})
-          dmv.isGreated = false
-          util.remove(dmv.greaterList,function(d){return d.dreamerId == app.globalData.userInfo.id})
+          for(var i=0;i<ds.length;i++) {
+            if(ds[i].dreamMessageView.messageId == mid) {
+              ds[i].greated = false
+              for(var j=0; j<ds[i].greaterList.length; j++) {
+                if(ds[i].dreamerId == app.globalData.userInfo.id) {
+                  ds[i].greaterList.splice(j, 1)
+                }
+              }
+            }
+          }
           that.setData({dreamsList:ds})
         } else {
           that.openToast("开了个小差");
