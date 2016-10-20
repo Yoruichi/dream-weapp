@@ -30,10 +30,11 @@ App({
         url:'op/dreamer/checkLogin',
         succ:function(data){
           console.log('got response for check login.')
+          console.log('app got login dreamer info >>> ' + that.globalData.userInfo.nickName)
           if(data && data.succ) {
             that.globalData.userInfo=data.obj.dreamer
             //if(o.succ) o.succ(o.succParams)
-            that.request(o)
+            if(o) that.request(o)
           }else{
             console.log('try login again')
             //if(o.fail) o.fail(o.failParams)
@@ -53,7 +54,6 @@ App({
     if(sid) {
       var that = this
       this.globalData.jSessionId=sid
-      //this.checkLogin()
     } else {
       console.log('not got sid from storge')
     }

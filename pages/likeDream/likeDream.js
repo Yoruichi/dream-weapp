@@ -33,9 +33,20 @@ Page({
     //console.log(util.writeObj(e))
     this.setData({scrollTop:e.detail.scrollTop})
   },
-  onReplyChange: function(e) {
+  cancelReply: function(e) {
     this.setData({
-      opReply: !this.data.opReply
+      opReply: false
+    })
+  },
+  replyToSomeone: function(e) {
+    this.setData({
+      opReply: true,
+      reply:{
+        replyToDreamer: e.currentTarget.dataset.did,
+        replyTo:e.currentTarget.dataset.mid,
+        replyToDreamerNickName:e.currentTarget.dataset.dna
+      }, 
+      replyPlaceHolder: '回复 ' + e.currentTarget.dataset.dna
     })
   },
   back:function() {
@@ -173,15 +184,57 @@ Page({
   },
   do_reply: function(e) {
     var that = this
-    console.log('current reply ' + that.data.reply.content + ' to message id ' + that.data.reply.replyTo)
+    console.log('current reply ' + that.data.reply.content + ' to message id ' + that.data.reply.replyTo + ' to dreamer id ' + that.data.reply.replyToDreamer)
+
     if(!that.data.reply.content || that.data.reply.content.length == 0) {this.openToast('追梦怎能无言')}
-    else {
+    else if(!that.data.reply.replyToDreamer) {
       app.checkLoginReq({
         url:'op/reply/message',
         data:'messageId=' + that.data.reply.replyTo + '&content=' + that.data.reply.content,
         succ:function(data) {
           if(data.succ){
-            that.setData({opReply:false, reply:{content:''}})
+            var ds = that.data.dreamsList
+            for(var i=0;i<ds.length; i++) {
+              if(ds[i].dreamMessageView.messageId == that.data.reply.replyTo) {
+                ds[i].replyList.splice(0,0,{
+                  messageId:that.data.reply.replyTo,
+                  dreamerId:app.globalData.userInfo.id,
+                  nickName:app.globalData.userInfo.nickName,
+                  avatarUrl:app.globalData.userInfo.avatarUrl,
+                  content:that.data.reply.content,
+                  replyDreamerId:that.data.reply.replyToDreamer,
+                  replyNickName:that.data.reply.replyToDreamerNickName                
+                })
+              }
+            }
+            that.setData({opReply:false, reply:{content:''}, replyPlaceHolder:'说点儿什么', dreamsList:ds})
+            that.openToast("已留下你的梦迹")
+          } else {
+            that.openToast("梦迹略重啊")
+          }
+        }
+      })
+    } else {
+      app.checkLoginReq({
+        url:'op/reply/dreamer',
+        data:'messageId=' + that.data.reply.replyTo + '&content=' + that.data.reply.content + '&replyDreamerId=' + that.data.reply.replyToDreamer,
+        succ:function(data) {
+          if(data.succ){
+            var ds = that.data.dreamsList
+            for(var i=0;i<ds.length; i++) {
+              if(ds[i].dreamMessageView.messageId == that.data.reply.replyTo) {
+                ds[i].replyList.splice(0,0,{
+                  messageId:that.data.reply.replyTo,
+                  dreamerId:app.globalData.userInfo.id,
+                  nickName:app.globalData.userInfo.nickName,
+                  avatarUrl:app.globalData.userInfo.avatarUrl,
+                  content:that.data.reply.content,
+                  replyDreamerId:that.data.reply.replyToDreamer,
+                  replyNickName:that.data.reply.replyToDreamerNickName                
+                })
+              }
+            }
+            that.setData({opReply:false, reply:{content:''}, replyPlaceHolder:'说点儿什么', dreamsList:ds})
             that.openToast("已留下你的梦迹")
           } else {
             that.openToast("梦迹略重啊")

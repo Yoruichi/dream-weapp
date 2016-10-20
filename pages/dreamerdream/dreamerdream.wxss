@@ -18,6 +18,30 @@
     width: 180rpx;
     justify-content: center;
 }
+.actionBottom {
+  height: 20rpx;
+  background-color: #999;
+}
+.dream_reply_list {
+    display: flex;
+    flex-flow: column nowrap;
+    margin-top: 2rpx;
+    margin-bottom: 14rpx;
+}
+.dream_reply {
+    max-width: 670rpx;
+    margin-top: 4rpx;
+    padding-top: 8rpx;
+    border-top: 1px;
+    border-top-color: #DBDBDB;
+    border-top-style: dotted;
+    display: flex;
+    flex-flow: row wrap;
+}
+.dream_reply_content {
+    font-size: 20rpx;
+    margin-left: 8rpx;
+}
 .avatar{
     height: 150rpx;
     width: 150rpx;
@@ -101,7 +125,7 @@
 .reply_ac{
     background-color: black;
 }
-.dream_reply{
+.dream_reply_act{
     display: flex;
     flex-flow: row nowrap;
     margin-top: 16rpx;

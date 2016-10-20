@@ -2,7 +2,7 @@ var util = require('../../utils/util.js')
 var app = getApp()
 Page({
   data: {
-    actionSheetHidden:false,
+    actionSheetHidden:true,
     actionSheedItems:[{s:'公开的', v:'PUBLIC'}, {s:'私密的', v:'PRIVATE'}],
     toastStatus: true,
     toasContent:"默认",
@@ -20,6 +20,10 @@ Page({
   },
   bindItemTap:function(e) {
      this.setData({type:e.currentTarget.dataset.name,actionSheetHidden:true})
+     this.send()
+  },
+  bindCancelTap:function(e) {
+    this.setData({actionSheetHidden:true})
   },
   onLoad: function(options) {
   },
@@ -33,7 +37,7 @@ Page({
     if(dtch && dlch && ch) {
       this.setData({contentHolder:ch,dreamTypeContentHolder:dtch,dreamLocationContentHolder:dlch})
     }
-    this.setData({imageList:[],actionSheetHidden:false,dreamTime:util.dateFormat(new Date(),'dd/MM/yyyy hh')})
+    this.setData({imageList:[],actionSheetHidden:true,dreamTime:util.dateFormat(new Date(),'dd/MM/yyyy hh')})
   },
   onHide: function() {
     // Do something when page hide.
@@ -57,28 +61,30 @@ Page({
     this.checkSendEnable()
   },
   setLoading: function(){
-    this.setData({disabled:true})
+    this.setData({disabled:true,actionSheetHidden:false})
+  },
+  send: function() {
     this.openToast('发布中')
     var that = this
-      app.checkLoginReq({
-        url:'op/dreamMessage/send',
-        data:'dreamTypeContent=' + this.data.dreamTypeContent + '&dreamTime=' + this.data.dreamTime + '&dreamLocationContent=' + 
-        this.data.dreamLocationContent + '&content=' + this.data.content + '&type=' + this.data.type +(this.data.imageList.length > 0?'&imageUrl=' + this.data.imageList.join():''),
-        succ:function(data) {
-          if(data.succ) {
-            wx.setStorageSync('dreamTypeContentHolder', that.data.dreamTypeContent)
-            wx.setStorageSync('dreamLocationContentHolder', that.data.dreamLocationContent)
-            wx.setStorageSync('contentHolder', that.data.content)
-            that.openToast("发布成功")
-            that.updatePlaceHolder()
-            // wx.navigateTo({
-            //   url: app.getPreview().url
-            // })
-          }else{
-            console.log(data.message)
-          }
+    app.checkLoginReq({
+      url:'op/dreamMessage/send',
+      data:'dreamTypeContent=' + this.data.dreamTypeContent + '&dreamTime=' + this.data.dreamTime + '&dreamLocationContent=' + 
+      this.data.dreamLocationContent + '&content=' + this.data.content + '&type=' + this.data.type +(this.data.imageList.length > 0?'&imageUrl=' + this.data.imageList.join():''),
+      succ:function(data) {
+        if(data.succ) {
+          wx.setStorageSync('dreamTypeContentHolder', that.data.dreamTypeContent)
+          wx.setStorageSync('dreamLocationContentHolder', that.data.dreamLocationContent)
+          wx.setStorageSync('contentHolder', that.data.content)
+          that.openToast("发布成功")
+          that.updatePlaceHolder()
+          // wx.navigateTo({
+          //   url: app.getPreview().url
+          // })
+        }else{
+          console.log(data.message)
         }
-      })
+      }
+    })
   },
   updatePlaceHolder:function() {
     this.setData({

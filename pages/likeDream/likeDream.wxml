@@ -40,15 +40,28 @@
                 <image bindtap="do_share" class="ub-img do_act_icon" src="/imgs/share.png"></image>
                 <image data-mid="{{dream.dreamMessageView.messageId}}" bindtap="opReply" class="ub-img do_act_icon" src="/imgs/reply.png"></image>
             </view>
+            <block wx:for="{{[0,1,2]}}" wx:for-item="idx" wx:key="rr">
+                <view class="dream_reply_list">
+                    <view class="dream_reply" wx:if="{{dream.replyList.length>idx}}">
+                        <text class="dream_reply_content" bindtap="replyToSomeone"
+                        data-mid="{{dream.replyList[idx].messageId}}" 
+                        data-did="{{dream.replyList[idx].dreamerId}}" 
+                        data-dna="{{dream.replyList[idx].nickName}}">{{dream.replyList[idx].nickName}}</text>
+                        <text class="dream_reply_content" wx:if="{{!dream.replyList[idx].replyDreamerId}}"> 回复: </text>
+                        <text class="dream_reply_content" wx:if="{{dream.replyList[idx].replyDreamerId}}"> 回复 {{dream.replyList[idx].replyNickName}}: </text>
+                        <text class="dream_reply_content">{{dream.replyList[idx].content}}</text>
+                    </view>
+                </view>
+            </block>
         </view>
     </block>
 </scroll-view>
-<action-sheet hidden="{{!opReply}}" bindchange="onReplyChange">
-    <view wx:if="{{opReply}}" class="dream_reply">
+<action-sheet hidden="{{!opReply}}">
+    <view wx:if="{{opReply}}" class="dream_reply_act">
         <input auto-focus="true" bindchange="setReply" maxlength="255" class="reply_input" type="text" placeholder="说点儿什么" placeholder-class="placeholder" value=""/>
         <button class="reply_button" bindtap="do_reply">评论</button>
     </view>
-    <action-sheet-cancel class="cancel">取消</action-sheet-cancel>
+    <action-sheet-cancel class="cancel" bindtap="cancelReply">取消</action-sheet-cancel>
 </action-sheet>
 <toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
     {{toasContent}}

@@ -32,6 +32,7 @@
     <block wx:for="{{actionSheedItems}}" wx:for-item="item">
         <action-sheet-item bindtap="bindItemTap" data-name="{{item.v}}">{{item.s}}</action-sheet-item>
     </block>
+    <action-sheet-cancel bindtap="bindCancelTap">撤回</action-sheet-cancel>
     <view class="actionBottom" />
 </action-sheet>
 <toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
