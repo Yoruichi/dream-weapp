@@ -13,7 +13,8 @@ Page({
     noLoading:false,
     opReply:false,
     reply:{content:''},
-    scrollTop:0
+    scrollTop:0,
+    isLoading:false
   },
   onLoad: function(options) {
     console.log('dreamerdream is on load with parameter did >>> ' + options.did)
@@ -56,32 +57,37 @@ Page({
     this.setData({'noLoading':true})
   },
   getDreams:function(p, cb) {
-    var that = this
-    app.checkLoginReq({
-      url:'op/messageView/checkSomeone',
-      data:'limit=' + p.limit + '&index=' + p.page * p.limit + '&dreamerId=' + p.did,
-      succ:function(data){
-        if(data && data.succ) {
-          // data.obj.forEach(function(e){
-          //   var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.userInfo.id})
-          //   if(f){e.isGreated = true} else {e.isGreated = false}
-          //   e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
-          //   e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
-          //   p.dreamsList.push(e)
-          // })
-          p.dreamsList = p.dreamsList.concat(data.obj)
-          p.page = p.page + 1
-          p.lastFlush = new Date().getTime()
+    if(!this.data.isLoading) {
+      this.setData({isLoading:true})
+      var that = this
+      app.checkLoginReq({
+        url:'op/messageView/checkSomeone',
+        data:'limit=' + p.limit + '&index=' + p.page * p.limit + '&dreamerId=' + p.did,
+        succ:function(data){
           p.noLoading = true
+          p.isLoading = false
           that.setData(p)
-        }else{
-          console.log(data ? data.message : 'not login')
+          if(data && data.succ) {
+            // data.obj.forEach(function(e){
+            //   var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.userInfo.id})
+            //   if(f){e.isGreated = true} else {e.isGreated = false}
+            //   e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
+            //   e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
+            //   p.dreamsList.push(e)
+            // })
+            p.dreamsList = p.dreamsList.concat(data.obj)
+            p.page = p.page + 1
+            p.lastFlush = new Date().getTime()
+            that.setData(p)
+          }else{
+            console.log(data ? data.message : 'not login')
+          }
+          if(cb && typeof cb == 'function') {
+            cb()
+          }
         }
-        if(cb && typeof cb == 'function') {
-          cb()
-        }
-      }
-    })
+      })
+    }
   },
   init: function(cb){
     this.setData({noLoading:false})

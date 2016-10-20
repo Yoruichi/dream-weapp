@@ -14,7 +14,8 @@ Page({
     reply:{content:''},
     replyToDreamer:0,
     replyPlaceHolder:'说点儿什么',
-    scrollTop:0
+    scrollTop:0,
+    isloading:false
   },
   scroll:function(e){
     //console.log(util.writeObj(e))
@@ -46,38 +47,43 @@ Page({
     console.log('dreams is on load now')
   },
   getDreams:function(p, cb) {
-    var that = this
-    console.log('will get dreams.')
-    app.checkLoginReq({
-      url:'op/messageView/check',
-      data:'limit=' + p.limit + '&index=' + p.page * p.limit,
-      succ:function(data){
-        console.log('get dreams got response.' + data.succ)
-        if(data && data.succ) {
-          console.log('will render dreams for each' + util.writeObj(data.obj))
-          // data.obj.forEach(function(e){
-          //   var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.userInfo.id})
-          // if(f){e.isGreated = true} else {e.isGreated = false}
-          //   e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
-          //   e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
-          //   p.dreamsList.push(e)
-          // })
-          
-          p.dreamsList = p.dreamsList.concat(data.obj)
-          console.log('end for each and will render page')
-          p.page = p.page + 1
-          p.lastFlush = new Date().getTime()
+    if(!this.data.isLoading) {
+      this.setData({isLoading:true})
+      var that = this
+      console.log('will get dreams.')
+      app.checkLoginReq({
+        url:'op/messageView/check',
+        data:'limit=' + p.limit + '&index=' + p.page * p.limit,
+        succ:function(data){
+          console.log('get dreams got response.' + data.succ)
           p.noLoading = true
+          p.isLoading = false
           that.setData(p)
-          console.log('get dreams from remote server succ.')
-        }else{
-          console.log('get dreams failed. Caused by:' + data ? data.message : 'not login')
+          if(data && data.succ) {
+            console.log('will render dreams for each' + util.writeObj(data.obj))
+            // data.obj.forEach(function(e){
+            //   var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.userInfo.id})
+            // if(f){e.isGreated = true} else {e.isGreated = false}
+            //   e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
+            //   e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
+            //   p.dreamsList.push(e)
+            // })
+            
+            p.dreamsList = p.dreamsList.concat(data.obj)
+            console.log('end for each and will render page')
+            p.page = p.page + 1
+            p.lastFlush = new Date().getTime()
+            that.setData(p)
+            console.log('get dreams from remote server succ.')
+          }else{
+            console.log('get dreams failed. Caused by:' + data ? data.message : 'not login')
+          }
+          if(cb && typeof cb == 'function') {
+            cb()
+          }
         }
-        if(cb && typeof cb == 'function') {
-          cb()
-        }
-      }
-    })
+      })
+    }
   },
   init: function(cb){
     this.setData({noLoading:false})
