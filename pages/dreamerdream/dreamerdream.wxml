@@ -1,4 +1,4 @@
-<view class="dreamer">
+<view class="unii-content dreamer">
     <view class="dreamer_center">
         <view class="avatar">
             <image class="avatar" src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/imgs/400-400.png'}}" />
@@ -6,8 +6,8 @@
         <text class="nick">{{userInfo.nickName}}</text>
     </view>
 </view>
+<loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
 <scroll-view class="unii-content dream_list" bindscroll="scroll" scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" bindscrolltolower="pullUpLoad">
-   <loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
     <block wx:for="{{dreamsList}}" wx:for-item="dream">
         <view class="dream_line">
             <view data-did="{{dream.dreamMessageView.dreamerId}}" class="dream_title">
@@ -40,8 +40,8 @@
                 <image bindtap="do_share" class="ub-img do_act_icon" src="/imgs/share.png"></image>
                 <image data-mid="{{dream.dreamMessageView.messageId}}" bindtap="opReply" class="ub-img do_act_icon" src="/imgs/reply.png"></image>
             </view>
-            <block wx:for="{{[0,1,2]}}" wx:for-item="idx" wx:key="rr">
-                <view class="dream_reply_list">
+            <view class="dream_reply_list" wx:if="{{dream.replyList.length>0}}">
+                <block wx:for="{{[0,1,2]}}" wx:for-item="idx" wx:key="rr">
                     <view class="dream_reply" wx:if="{{dream.replyList.length>idx}}">
                         <text class="dream_reply_content" bindtap="replyToSomeone"
                         data-mid="{{dream.replyList[idx].messageId}}" 
@@ -51,8 +51,8 @@
                         <text class="dream_reply_content" wx:if="{{dream.replyList[idx].replyDreamerId}}"> 回复 {{dream.replyList[idx].replyNickName}}: </text>
                         <text class="dream_reply_content">{{dream.replyList[idx].content}}</text>
                     </view>
-                </view>
-            </block>
+                </block>
+            </view>
         </view>
     </block>
 </scroll-view>

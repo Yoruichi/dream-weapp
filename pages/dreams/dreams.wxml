@@ -32,8 +32,8 @@
                 <image bindtap="do_share" class="ub-img do_act_icon" src="/imgs/share.png"></image>
                 <image data-mid="{{dream.dreamMessageView.messageId}}" bindtap="opReply" class="ub-img do_act_icon" src="/imgs/reply.png"></image>
             </view>
-            <block wx:for="{{[0,1,2]}}" wx:for-item="idx" wx:key="rr">
-                <view class="dream_reply_list">
+            <view class="dream_reply_list" wx:if="{{dream.replyList.length>0}}">
+                <block wx:for="{{[0,1,2]}}" wx:for-item="idx" wx:key="rr">
                     <view class="dream_reply" wx:if="{{dream.replyList.length>idx}}">
                         <text class="dream_reply_content" bindtap="replyToSomeone"
                         data-mid="{{dream.replyList[idx].messageId}}" 
@@ -43,14 +43,14 @@
                         <text class="dream_reply_content" wx:if="{{dream.replyList[idx].replyDreamerId}}"> 回复 {{dream.replyList[idx].replyNickName}}: </text>
                         <text class="dream_reply_content">{{dream.replyList[idx].content}}</text>
                     </view>
-                </view>
-            </block>
+                </block>
+            </view>
         </view>
     </block>
 </scroll-view>
 <action-sheet hidden="{{!opReply}}">
     <view wx:if="{{opReply}}" class="dream_reply_act">
-        <input bindchange="setReply" maxlength="255" class="reply_input" type="text" placeholder="{{replyPlaceHolder}}" placeholder-class="placeholder" value=""/>
+        <input auto-focus="true" bindchange="setReply" maxlength="255" class="reply_input" type="text" placeholder="{{replyPlaceHolder}}" placeholder-class="placeholder" value=""/>
         <button class="reply_button" bindtap="do_reply">评论</button>
     </view>
     <action-sheet-cancel bindtap="cancelReply" class="cancel">取消</action-sheet-cancel>

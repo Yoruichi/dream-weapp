@@ -1,16 +1,20 @@
 .dream_list{
     height: 1300rpx;
-    width: 708rpx;
-    margin-left: 2rpx;
+    width: 92%;
+    margin-left: 6rpx;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
 }
 .placeholder{
   color: gainsboro;
   font-size: 26rpx; 
 }
 .dream_line {
-    border-bottom: 2px solid #DBDBDB;
+    border-bottom: 1px solid #DBDBDB;
     display: flex;
-    flex-flow: column nowrap
+    flex-flow: column nowrap;
+    margin-bottom: 0.2rem;
 }
 .dream_title{
     display: flex;
@@ -25,7 +29,6 @@
     margin-bottom: 14rpx;
 }
 .dream_reply {
-    max-width: 670rpx;
     margin-top: 4rpx;
     padding-top: 8rpx;
     border-top: 1px;
@@ -59,7 +62,7 @@
     display: flex;
     flex-direction: row; 
     justify-content: flex-end;
-    width: 25%;
+    width: 27%;
     height: 50%;
     margin: .75rem 0;
     border: 1px #DBDBDB solid;
@@ -95,7 +98,7 @@
     margin-top: 16rpx;
     margin-bottom: 16rpx;
     border: 1px #DBDBDB solid;
-    width:708rpx;
+    width:92%;
     margin-left: 16rpx;
 }
 .reply_input{
