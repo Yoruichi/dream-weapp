@@ -2,7 +2,7 @@
     <view class="user_info">
         <navigator class="list_nav" url="html_userinfo/userinfo" hover-class="navigator-hover">
             <view class="listcontent_user">
-                <image src="{{userInfo.avatarUrl}}" class="ub-img listimage_user"></image>
+                <image src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/imgs/400-400.png'}}" class="ub-img listimage_user"></image>
                 <view class="nameinfo">
                     <view class="username">
                         {{userInfo.nickName}}

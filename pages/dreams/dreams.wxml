@@ -4,7 +4,7 @@
         <view class="dream_line">
             <view data-did="{{dream.dreamMessageView.dreamerId}}" bindtap="checkDreamer" class="dream_title">
                 <view class="dream_userinfo">
-                    <image class="ub-img user_photo" src="/imgs/icon64_appwx_logo.png"></image>
+                    <image class="ub-img user_photo" src="{{dream.dreamMessageView.avatarUrl?dream.dreamMessageView.avatarUrl:'/imgs/400-400.png'}}"></image>
                     <text class="username">
                     {{dream.dreamMessageView.nickName}}
                     </text>

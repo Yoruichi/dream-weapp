@@ -1,7 +1,7 @@
 <view class="dreamer">
     <view class="dreamer_center">
         <view class="avatar">
-            <image class="avatat" src="{{userInfo.avatarUrl}}" />
+            <image class="avatar" src="{{userInfo.avatarUrl?userInfo.avatarUrl:'/imgs/400-400.png'}}" />
         </view>
         <text class="nick">{{userInfo.nickName}}</text>
     </view>
