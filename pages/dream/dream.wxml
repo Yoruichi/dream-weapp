@@ -1,0 +1,56 @@
+<view class="unii-content dream_line">
+    <view data-did="{{dream.dreamMessageView.dreamerId}}" class="dream_title">
+        <view class="dream_userinfo">
+            <image class="ub-img user_photo" src="{{dream.dreamMessageView.avatarUrl?dream.dreamMessageView.avatarUrl:'/imgs/400-400.png'}}"></image>
+            <text class="username">
+            {{dream.dreamMessageView.nickName}}
+            </text>
+        </view>
+        <view class="user_time">
+            <image class="ub-img timetime_img" src="/imgs/green_tri.png"></image>
+            <text class="time_desc">
+            {{dream.timeshow}}
+            </text>
+        </view>
+    </view>
+    <view class="dream_content">
+        {{dream.dreamMessageView.content}}
+    </view>
+    <view wx:if="{{dream.imageList.length > 0}}" class="images-wrapper">
+        <view class="images-list">
+            <block wx:for="{{dream.imageList}}" wx:for-item="image">
+                <image src="{{image}}" class="images-image" data-src="{{image}}" bindtap="previewImage"></image>
+            </block>
+        </view>
+    </view>
+    <view class="dream_act">
+        <image wx:if="{{dream.greated}}" data-mid="{{dream.dreamMessageView.messageId}}" bindtap="undo_well" class="ub-img do_act_icon" src="/imgs/greated.png"></image>
+        <image wx:if="{{!dream.greated}}" data-mid="{{dream.dreamMessageView.messageId}}" bindtap="do_well" class="ub-img do_act_icon" src="/imgs/greater.png"></image>
+        <image bindtap="do_share" class="ub-img do_act_icon" src="/imgs/share.png"></image>
+        <image data-mid="{{dream.dreamMessageView.messageId}}" bindtap="opReply" class="ub-img do_act_icon" src="/imgs/reply.png"></image>
+    </view>
+</view>
+<loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
+<scroll-view class="unii-content reply_list" bindscroll="scroll" scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" bindscrolltolower="pullUpLoad">
+    <block wx:for="{{replyList}}" wx:for-item="reply" wx:key="rr">
+        <view class="dream_reply">
+            <text class="dream_reply_content dreamerName" bindtap="replyToSomeone"
+            data-mid="{{reply.messageId}}" 
+            data-did="{{reply.dreamerId}}" 
+            data-dna="{{reply.nickName}}">{{reply.nickName}}</text>
+            <text class="dream_reply_content" wx:if="{{!reply.replyDreamerId}}"> 回复: </text>
+            <text class="dream_reply_content" wx:if="{{reply.replyDreamerId}}"> 回复 {{reply.replyNickName}}: </text>
+            <text class="dream_reply_content">{{reply.content}}</text>
+        </view>
+    </block>
+</scroll-view>
+<action-sheet hidden="{{!opReply}}">
+    <view wx:if="{{opReply}}" class="dream_reply_act">
+        <input auto-focus="true" bindchange="setReply" maxlength="255" class="reply_input" type="text" placeholder="{{replyPlaceHolder}}" placeholder-class="placeholder" value=""/>
+        <button class="reply_button" bindtap="do_reply">评论</button>
+    </view>
+    <action-sheet-cancel bindtap="cancelReply" class="cancel">取消</action-sheet-cancel>
+</action-sheet>
+<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
+    {{toasContent}}
+</toast>

@@ -20,6 +20,9 @@ App({
       fail:function(res) {
         console.log('request to ' + url + ' failed.')
         if(o.fail){o.fail(res.data)}
+      },
+      complete:function() {
+        if(o.complete && typeof o.complete == 'function') o.complete()
       }
     })
   },
@@ -33,17 +36,17 @@ App({
           console.log('app got login dreamer info >>> ' + that.globalData.userInfo.nickName)
           if(data && data.succ) {
             that.globalData.userInfo=data.obj.dreamer
-            //if(o.succ) o.succ(o.succParams)
             if(o) that.request(o)
           }else{
             console.log('try login again')
-            //if(o.fail) o.fail(o.failParams)
             wx.navigateTo({url:'/pages/index/index'})
           }
         },
         fail:function(){
-          //if(o.fail) o.fail(o.failParams)
           wx.navigateTo({url:'/pages/index/index'})
+        },
+        complete:function(){
+          if(o.complete && typeof o.complete == 'function') o.complete()
         }
       })
   },

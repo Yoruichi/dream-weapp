@@ -54,21 +54,16 @@ Page({
       app.checkLoginReq({
         url:'op/messageView/check',
         data:'limit=' + p.limit + '&index=' + p.page * p.limit,
-        succ:function(data){
-          console.log('get dreams got response.' + data.succ)
+        complete:function(){
+          console.log('got dreams request completed.')
           p.noLoading = true
           p.isLoading = false
           that.setData(p)
+        },
+        succ:function(data){
+          console.log('get dreams got response.' + data.succ)
           if(data && data.succ) {
-            console.log('will render dreams for each' + util.writeObj(data.obj))
-            // data.obj.forEach(function(e){
-            //   var f = e.greaterList.find(function(g){return g.dreamerId == app.globalData.userInfo.id})
-            // if(f){e.isGreated = true} else {e.isGreated = false}
-            //   e.dreamMessageView.timeshow = util.timeInterval(e.dreamMessageView.messageCreateTime)
-            //   e.dreamMessageView.imageList = e.dreamMessageView.image_url ? e.dreamMessageView.image_url.split(',') : []
-            //   p.dreamsList.push(e)
-            // })
-            
+            // console.log('will render dreams for each' + util.writeObj(data.obj))
             p.dreamsList = p.dreamsList.concat(data.obj)
             console.log('end for each and will render page')
             p.page = p.page + 1
@@ -120,8 +115,9 @@ Page({
     this.getDreams(newData)
   },
   // Event handler.
-  showContent: function(obj) {
-      console.log("内容展开伸缩");
+  showContent: function(e) {
+      console.log('got parameter data dream >>> ' + e.currentTarget.dataset.d);
+      wx.navigateTo({url:'/pages/dream/dream?d=' + e.currentTarget.dataset.d})
   },
   checkDreamer: function(e) {
     // console.log('check dreamer info for dreamer by id ' + util.writeObj(e))

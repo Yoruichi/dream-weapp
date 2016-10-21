@@ -28,6 +28,9 @@
     margin-top: 2rpx;
     margin-bottom: 14rpx;
 }
+.dreamerName{
+    color: cornflowerblue;
+}
 .dream_reply {
     margin-top: 4rpx;
     padding-top: 8rpx;

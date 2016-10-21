@@ -16,7 +16,7 @@
                     </text>
                 </view>
             </view>
-            <view bindtap="showContent"  class="dream_content">
+            <view bindtap="showContent" data-d="{{dream.dreamMessageView.messageId}}" class="dream_content">
                 {{dream.dreamMessageView.content}}
             </view>
             <view wx:if="{{dream.imageList.length > 0}}" class="images-wrapper">
@@ -35,7 +35,7 @@
             <view class="dream_reply_list" wx:if="{{dream.replyList.length>0}}">
                 <block wx:for="{{[0,1,2]}}" wx:for-item="idx" wx:key="rr">
                     <view class="dream_reply" wx:if="{{dream.replyList.length>idx}}">
-                        <text class="dream_reply_content" bindtap="replyToSomeone"
+                        <text class="dream_reply_content dreamerName" bindtap="replyToSomeone"
                         data-mid="{{dream.replyList[idx].messageId}}" 
                         data-did="{{dream.replyList[idx].dreamerId}}" 
                         data-dna="{{dream.replyList[idx].nickName}}">{{dream.replyList[idx].nickName}}</text>

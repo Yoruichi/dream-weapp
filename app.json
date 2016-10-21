@@ -8,7 +8,8 @@
     "pages/setting/setting",
     "pages/dreamerinfo/dreamerinfo",
     "pages/send/send",
-    "pages/likeDream/likeDream"
+    "pages/likeDream/likeDream",
+    "pages/dream/dream"
   ],
   "window":{
     "backgroundTextStyle":"light",
