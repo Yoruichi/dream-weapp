@@ -172,6 +172,7 @@ Page({
   },
   do_reply: function(e) {
     var that = this
+    var rs = this.data.replyList
     console.log('current reply ' + that.data.reply.content + ' to message id ' + that.data.reply.replyTo + ' to dreamer id ' + that.data.reply.replyToDreamer)
 
     if(!that.data.reply.content || that.data.reply.content.length == 0) {this.openToast('追梦怎能无言')}
@@ -183,7 +184,7 @@ Page({
           if(data.succ){
             var ds = that.data.dream
               if(ds.dreamMessageView.messageId == that.data.reply.replyTo) {
-                ds.replyList.splice(0,0,{
+                  rs.splice(0,0,{
                   messageId:that.data.reply.replyTo,
                   dreamerId:app.globalData.userInfo.id,
                   nickName:app.globalData.userInfo.nickName,
@@ -194,7 +195,7 @@ Page({
                 })
               }
             
-            that.setData({opReply:false, reply:{content:''}, replyPlaceHolder:'说点儿什么', dream:ds})
+            that.setData({opReply:false, reply:{content:''}, replyPlaceHolder:'说点儿什么', dream:ds, replyList:rs})
             that.openToast("已留下你的梦迹")
           } else {
             that.openToast("梦迹略重啊")
@@ -208,9 +209,8 @@ Page({
         succ:function(data) {
           if(data.succ){
             var ds = that.data.dream
-
               if(ds.dreamMessageView.messageId == that.data.reply.replyTo) {
-                ds.replyList.splice(0,0,{
+                  rs.splice(0,0,{
                   messageId:that.data.reply.replyTo,
                   dreamerId:app.globalData.userInfo.id,
                   nickName:app.globalData.userInfo.nickName,
@@ -221,7 +221,7 @@ Page({
                 })
               }
             
-            that.setData({opReply:false, reply:{content:''}, replyPlaceHolder:'说点儿什么', dream:ds})
+            that.setData({opReply:false, reply:{content:''}, replyPlaceHolder:'说点儿什么', dream:ds, replyList:rs})
             that.openToast("已留下你的梦迹")
           } else {
             that.openToast("梦迹略重啊")
