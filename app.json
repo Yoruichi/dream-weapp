@@ -15,7 +15,7 @@
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#11cd6e",
     "navigationBarTitleText": "假装在登录...",
-    "enablePullDownRefresh":"enable",
+    "enablePullDownRefresh":"true",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {

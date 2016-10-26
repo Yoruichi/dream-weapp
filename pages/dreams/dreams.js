@@ -107,7 +107,7 @@ Page({
   },
   //下拉刷新
   onPullDownRefresh: function() {
-    this.init(wx.stopPullDownRefresh());
+    this.init(wx.stopPullDownRefresh);
   },
   pullUpLoad: function( e ) {
     console.log( "上拉拉加载更多...." + this.data.scrollTop )
