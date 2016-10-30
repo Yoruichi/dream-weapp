@@ -9,7 +9,6 @@ Page({
     page: 0,
     limit: 4,
     dreamsList:new Array(),
-    noLoading:false,
     opReply:false,
     reply:{content:''},
     replyToDreamer:0,
@@ -56,7 +55,7 @@ Page({
         data:'limit=' + p.limit + '&index=' + p.page * p.limit,
         complete:function(){
           console.log('got dreams request completed.')
-          p.noLoading = true
+          that.closeLoading()
           p.isLoading = false
           that.setData(p)
         },
@@ -81,7 +80,7 @@ Page({
     }
   },
   init: function(cb){
-    this.setData({noLoading:false})
+    this.openLoading()
     this.back()
     var newData = this.data
     newData.dreamsList = new Array()
@@ -248,15 +247,13 @@ Page({
     }
   },
   openToast: function(content){
-      var obj = {};
-      obj["toasContent"] = content;
-      obj["toastStatus"] = false;
-      this.setData(obj);
+     wx.showToast({titel:content,icon:"success",duration:1500})
   },
-  toastChange: function(){
-      var obj = {};
-      obj["toastStatus"] = true;
-      this.setData(obj);
+  openLoading: function() {
+    wx.showToast({title:"加载中...",icon:"loading"})
+  },
+  closeLoading:function(){
+    wx.hideToast()
   },
   previewImage: function (e) {
     var current = e.target.dataset.src;

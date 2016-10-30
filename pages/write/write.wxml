@@ -10,7 +10,7 @@
         <input bindchange="setDreamTypeContent" maxlength="4" class="padding-input" type="text" placeholder="{{dreamTypeContentHolder}}" placeholder-class="placeholder" value="{{dreamTypeContent}}"/>
         </view>
         <view class="padding-view">的梦。我梦见</view>
-        <input bindchange="setContent" class="padding-input dream_content" maxlength="220" type="text" placeholder="{{contentHolder}}" placeholder-class="placeholder" value="{{content}}" />
+        <textarea bindblur="setContent" class="padding-input dream_content" maxlength="220" placeholder="{{contentHolder}}" placeholder-class="placeholder" value="{{content}}" auto-height="true" />
         <!--<text>aaa
         ddd</text>-->
     </view>
@@ -35,6 +35,6 @@
     <action-sheet-cancel bindtap="bindCancelTap">撤回</action-sheet-cancel>
     <view class="actionBottom" />
 </action-sheet>
-<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
+<!--<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
     {{toasContent}}
-</toast>
+</toast>-->

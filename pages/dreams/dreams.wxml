@@ -1,6 +1,6 @@
-<loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
+<!--<loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>-->
 <scroll-view class="unii-content dream_list" bindscroll="scroll" scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" bindscrolltolower="pullUpLoad">
-    <block wx:for="{{dreamsList}}" wx:for-item="dream" wx:key="dd">
+    <block wx:for="{{dreamsList}}" wx:for-item="dream" wx:key="dream.dreamMessageView.messageId">
         <view class="dream_line">
             <view data-did="{{dream.dreamMessageView.dreamerId}}" bindtap="checkDreamer" class="dream_title">
                 <view class="dream_userinfo">
@@ -16,9 +16,9 @@
                     </text>
                 </view>
             </view>
-            <view bindtap="showContent" data-d="{{dream.dreamMessageView.messageId}}" class="dream_content">
+            <text bindtap="showContent" data-d="{{dream.dreamMessageView.messageId}}" class="dream_content">
                 {{dream.dreamMessageView.content}}
-            </view>
+            </text>
             <view wx:if="{{dream.imageList.length > 0}}" class="images-wrapper">
                 <view class="images-list">
                     <block wx:for="{{dream.imageList}}" wx:for-item="image">
@@ -55,6 +55,6 @@
     </view>
     <action-sheet-cancel bindtap="cancelReply" class="cancel">取消</action-sheet-cancel>
 </action-sheet>
-<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
+<!--<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
     {{toasContent}}
-</toast>
+</toast>-->

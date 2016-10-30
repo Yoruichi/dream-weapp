@@ -10,7 +10,6 @@ Page({
     page: 0,
     limit: 13,
     replyList:new Array(),
-    noLoading:false,
     opReply:false,
     reply:{content:''},
     replyToDreamer:0,
@@ -28,7 +27,7 @@ Page({
         url:'op/messageView/check/one',
         data:'messageId=' + messageId,
         succ:function(data) {
-            console.log('get dreams got response.' + data.succ)
+            console.log('get dream got response.' + data.succ)
             if(data && data.succ && data.obj && data.obj.length > 0) {
                 that.setData({dream:data.obj[0]})
             }
@@ -65,7 +64,7 @@ Page({
     this.setData({'noLoading':true})
   },
   init: function(cb){
-    this.setData({noLoading:false})
+    this.openLoading()
     this.back()
     var newData = this.data
     newData.replyList = new Array()
@@ -83,9 +82,6 @@ Page({
         data:'limit=' + p.limit + '&index=' + p.page * p.limit + '&messageId=' + p.messageId,
         succ:function(data){
           console.log('get replys got response.' + data.succ)
-          p.noLoading = true
-          p.isLoading = false
-          that.setData(p)
           if(data && data.succ) {
             // console.log('will render dreams for each' + util.writeObj(data.obj))
             p.replyList = p.replyList.concat(data.obj)
@@ -93,13 +89,19 @@ Page({
             p.page = p.page + 1
             p.lastFlush = new Date().getTime()
             that.setData(p)
-            console.log('get dreams from remote server succ.')
+            console.log('get replys from remote server succ.')
           }else{
-            console.log('get dreams failed. Caused by:' + data ? data.message : 'not login')
+            console.log('get replys failed. Caused by:' + data ? data.message : 'not login')
           }
           if(cb && typeof cb == 'function') {
             cb()
           }
+        },
+        complete:function(){
+          console.log('got replys request completed.')
+          that.closeLoading()
+          p.isLoading = false
+          that.setData(p)
         }
       })
     }
@@ -231,15 +233,13 @@ Page({
     }
   },
   openToast: function(content){
-      var obj = {};
-      obj["toasContent"] = content;
-      obj["toastStatus"] = false;
-      this.setData(obj);
+      wx.showToast({titel:content,icon:"success",duration:1500})
   },
-  toastChange: function(){
-      var obj = {};
-      obj["toastStatus"] = true;
-      this.setData(obj);
+  openLoading: function() {
+    wx.showToast({title:"加载中...",icon:"loading"})
+  },
+  closeLoading:function(){
+    wx.hideToast()
   },
   previewImage: function (e) {
     var current = e.target.dataset.src;

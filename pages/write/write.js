@@ -3,7 +3,7 @@ var app = getApp()
 Page({
   data: {
     actionSheetHidden:true,
-    actionSheedItems:[{s:'公开的', v:'PUBLIC'}, {s:'私密的', v:'PRIVATE'}],
+    actionSheetItems:[{s:'公开的', v:'PUBLIC'}, {s:'私密的', v:'PRIVATE'}],
     toastStatus: true,
     toasContent:"默认",
     dreamTime:'',
@@ -18,13 +18,25 @@ Page({
     disabled:true,
     imageList:[]
   },
-  bindItemTap:function(e) {
-     this.setData({type:e.currentTarget.dataset.name,actionSheetHidden:true})
-     this.send()
+  showActionSheet:function(){
+    var that = this
+    wx.showActionSheet({
+      itemList:['公开的','私密的'],
+      success:function(res){
+        if(!res.cancel) {
+          that.setData({type:that.data.actionSheetItems[res.tapIndex].v})
+          that.send()
+        }
+      }
+    })
   },
-  bindCancelTap:function(e) {
-    this.setData({actionSheetHidden:true})
-  },
+  // bindItemTap:function(e) {
+  //    this.setData({type:e.currentTarget.dataset.name,actionSheetHidden:true})
+  //    this.send()
+  // },
+  // bindCancelTap:function(e) {
+  //   this.setData({actionSheetHidden:true})
+  // },
   onLoad: function(options) {
   },
   onReady: function() {
@@ -61,7 +73,8 @@ Page({
     this.checkSendEnable()
   },
   setLoading: function(){
-    this.setData({disabled:true,actionSheetHidden:false})
+    this.setData({disabled:true})
+    this.showActionSheet()
   },
   send: function() {
     this.openToast('发布中')
@@ -98,13 +111,7 @@ Page({
     })
   },
   openToast: function(content){
-      var obj = {};
-      obj["toasContent"] = content;
-      obj["toastStatus"] = false;
-      this.setData(obj);
-  },
-  toastChange: function() {
-    this.setData({toastStatus:true})
+    wx.showToast({titel:content,icon:"success",duration:1500})
   },
   chooseImage: function () {
     if(this.data.imageList.length >= 1) {

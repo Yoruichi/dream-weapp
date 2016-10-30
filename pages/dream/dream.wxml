@@ -13,9 +13,9 @@
             </text>
         </view>
     </view>
-    <view class="dream_content">
+    <text class="dream_content">
         {{dream.dreamMessageView.content}}
-    </view>
+    </text>
     <view wx:if="{{dream.imageList.length > 0}}" class="images-wrapper">
         <view class="images-list">
             <block wx:for="{{dream.imageList}}" wx:for-item="image">
@@ -30,9 +30,9 @@
         <image data-mid="{{dream.dreamMessageView.messageId}}" bindtap="opReply" class="ub-img do_act_icon" src="/imgs/reply.png"></image>
     </view>
 </view>
-<loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>
+<!--<loading hidden="{{noLoading}}" bindchange="loadingChange">加载中...</loading>-->
 <scroll-view class="unii-content reply_list" bindscroll="scroll" scroll-y="true" scroll-top="{{scrollTop}}" lower-threshold="150" bindscrolltolower="pullUpLoad">
-    <block wx:for="{{replyList}}" wx:for-item="reply" wx:key="rr">
+    <block wx:for="{{replyList}}" wx:for-item="reply" wx:key="replyId">
         <view class="dream_reply">
             <text class="dream_reply_content dreamerName" bindtap="replyToSomeone"
             data-mid="{{reply.messageId}}" 
@@ -51,6 +51,6 @@
     </view>
     <action-sheet-cancel bindtap="cancelReply" class="cancel">取消</action-sheet-cancel>
 </action-sheet>
-<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
+<!--<toast hidden="{{toastStatus}}" duration="1000" bindchange="toastChange">
     {{toasContent}}
-</toast>
+</toast>-->
